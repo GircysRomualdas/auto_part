@@ -1,0 +1,33 @@
+<div class="d-flex">
+  <% if customer_signed_in? %>
+    <div class="d-flex">
+      <p class="mx-1 my-auto">
+        <strong>Customer</strong>
+        <%= link_to current_customer.email, edit_customer_registration_path, class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+      </p>
+      <%= link_to "Sign out", destroy_customer_session_path, class: "btn btn-primary mx-1", method: :delete, data: {turbo_method: :delete} %>
+    </div>
+  <% elsif !admin_signed_in? && !seller_signed_in? %>
+    <div class="d-flex">
+      <%= link_to "For seller", for_seller_path, class: "mx-1 my-auto link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+      <%= link_to "Sign up", new_customer_registration_path, class: "btn btn-primary mx-1" %>
+      <%= link_to "Sign in", new_customer_session_path, class: "btn btn-primary mx-1" %>
+    </div>
+  <% elsif !admin_signed_in? && !customer_signed_in? %>
+    <div class="d-flex">
+      <p class="mx-1 my-auto">
+        <strong>Seller</strong>
+        <%= link_to current_seller.email, edit_seller_registration_path, class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+      </p>
+      <%= link_to "Sign out", destroy_seller_session_path, class: "btn btn-primary mx-1", method: :delete, data: {turbo_method: :delete} %>
+    </div>
+  <% elsif !seller_signed_in? && !customer_signed_in? %>
+    <div class="d-flex">
+      <p class="mx-1 my-auto">
+        <strong>Admin</strong>
+        <%= link_to current_admin.email, edit_admin_registration_path, class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+      </p>
+      <%= link_to "Sign out", destroy_admin_session_path, class: "btn btn-primary mx-1", method: :delete, data: {turbo_method: :delete} %>
+    </div>
+  <% end %>
+</div>

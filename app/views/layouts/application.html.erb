@@ -18,6 +18,18 @@
   <body>
     <%= render "layouts/shared/navbar" %>
     <div class="container">
+      <div>
+        <% if notice %>
+          <div class="alert alert-success">
+            <p class="notice"><%= notice %></p>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div class="alert alert-danger">
+            <p class="alert"><%= alert %></p>
+          </div>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
   </body>

@@ -1,0 +1,6 @@
+<div>
+  <h2>For seller</h2>
+  <% if !customer_signed_in? && !admin_signed_in? && !seller_signed_in?  %>
+    <%= link_to "Sign in", new_seller_session_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
