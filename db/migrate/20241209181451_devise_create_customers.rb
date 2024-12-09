@@ -7,6 +7,9 @@ class DeviseCreateCustomers < ActiveRecord::Migration[8.0]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
+      t.string :username
+      t.string :address
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -36,6 +39,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[8.0]
       t.timestamps null: false
     end
 
+    add_index :customers, :username,             unique: true
     add_index :customers, :email,                unique: true
     add_index :customers, :reset_password_token, unique: true
     # add_index :customers, :confirmation_token,   unique: true
