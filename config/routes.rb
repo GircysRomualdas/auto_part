@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   get "for_seller", to: "pages#for_seller"
   get "for_admin", to: "pages#for_admin"
 
+  resources :customers
+  resources :sellers
+
   root "pages#home"
 end

@@ -1,14 +1,28 @@
 
-admin = Admin.where(email: "admin@gmail.com").first_or_initialize
+3.times do |i|
+  admin = Admin.where(email: "admin#{i}@gmail.com").first_or_initialize
 
-admin.update!(
-  password: "password",
-  password_confirmation: "password"
-)
+  admin.update!(
+    password: "password",
+    password_confirmation: "password"
+  )
+end
 
-seller = Seller.where(email: "seller@gmail.com").first_or_initialize
 
-seller.update!(
-  password: "password",
-  password_confirmation: "password"
-)
+4.times do |i|
+  seller = Seller.where(email: "seller#{i}@gmail.com").first_or_initialize
+
+  seller.update!(
+    password: "password",
+    password_confirmation: "password"
+  )
+end
+
+8.times do |i|
+  customer = Customer.where(email: "customer#{i}@gmail.com").first_or_initialize
+
+  customer.update!(
+    password: "password",
+    password_confirmation: "password"
+  )
+end

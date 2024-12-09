@@ -1,0 +1,27 @@
+<div>
+  <h2>Manage Sellers</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Created</th>
+        <th scope="col">Updated</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sellers.each do |seller| %>
+        <tr>
+          <td><%= seller.id %></td>
+          <td><%= seller.email %></td>
+          <td><%= seller.created_at %></td>
+          <td><%= seller.updated_at %></td>
+          <td>
+            <%= button_to "Delete", seller_path(seller), class: "btn btn-danger", method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

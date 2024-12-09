@@ -1,0 +1,27 @@
+<div>
+  <h2>Manage Customers</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Created</th>
+        <th scope="col">Updated</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.created_at %></td>
+          <td><%= customer.updated_at %></td>
+          <td>
+            <%= button_to "Delete", customer_path(customer), class: "btn btn-danger", method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
