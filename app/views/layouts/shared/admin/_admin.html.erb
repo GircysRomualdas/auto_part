@@ -1,0 +1,4 @@
+<div>
+  <li class="nav-item"><%= link_to current_admin.email, edit_admin_registration_path, class: "nav-link" %></li>
+  <li class="nav-item"><%= button_to "Sign out", destroy_admin_session_path, class: "nav-link", method: :delete %></li>
+</div>

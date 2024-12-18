@@ -1,0 +1,37 @@
+<div>
+  <%= link_to "back", admin_part_types_path, class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="display-6">Show Part Type</h2>
+        <div class="d-flex">
+          <div class="mx-1">
+            <%= link_to "Edit", edit_admin_part_type_path(@part_type), class: "btn btn-primary" %>
+          </div>
+          <div class="mx-1">
+            <%= button_to "Delete", admin_part_type_path(@part_type), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5 d-flex justify-content-center mb-4">
+          <%= @part_type.image.present? ? image_tag(@part_type.image.variant(:large), class: "img-fluid rounded shadow") : image_tag("https://via.placeholder.com/500", class: "img-fluid rounded shadow") %>
+        </div>
+        <div class="col-md-7">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Part Type Details</h5>
+              <p class="mb-2"><strong>Name</strong> <%= @part_type.name %></p>
+              <p class="mb-2"><strong>Created</strong> <%= @part_type.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+              <p class="mb-2"><strong>Last updated</strong> <%= @part_type.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+              <div>
+                <p class="mb-0"><strong>Description</strong></p>
+                <p class="mt-0"><%= @part_type.description %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="d-flex">
+  <% if customer_signed_in? %>
+    <div class="d-flex">
+      <p class="mx-1 my-auto">
+        <strong>Customer:</strong>
+        <%= link_to current_customer.email, edit_customer_registration_path, class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+      </p>
+      <%= button_to "Sign out", destroy_customer_session_path, class: "btn btn-primary mx-1", method: :delete %>
+    </div>
+  <% else %>
+    <div class="d-flex">
+      <%= link_to "Sign up", new_customer_registration_path, class: "btn btn-primary mx-1" %>
+      <%= link_to "Sign in", new_customer_session_path, class: "btn btn-primary mx-1" %>
+    </div>
+  <% end %>
+</div>

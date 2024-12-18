@@ -1,0 +1,11 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= link_to "back", admin_part_type_path(@part_type), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+    <div class="card shadow-sm mt-3">
+      <div class="card-body">
+        <h3 class="mb-4 text-center">Edit part type</h3>
+        <%= render "form", part_type: @part_type %>
+      </div>
+    </div>
+  </div>
+</div>

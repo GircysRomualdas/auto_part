@@ -16,13 +16,18 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
   <body>
-    <div class="d-flex flex-column min-vh-100">
-      <%= render "layouts/shared/navbar" %>
-      <div class="container">
-        <%= render "layouts/shared/flash_messages" %>
-        <%= yield %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-auto bg-dark-subtle sticky-top">
+          <div class="d-flex flex-sm-column flex-row flex-nowrap align-items-center sticky-top">
+            <%= render "layouts/shared/admin/navbar" %>
+          </div>
+        </div>
+        <div class="col-sm p-3 min-vh-100">
+          <%= render "layouts/shared/flash_messages" %>
+          <%= yield %>
+        </div>
       </div>
-      <%= render "layouts/shared/footer" %>
     </div>
   </body>
 </html>

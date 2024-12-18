@@ -1,0 +1,30 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="p-3">
+      <h2 class="display-6">Customers</h2>
+    </div>
+    <div class="mt-2">
+      <table class="table table-hover border-top">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Created</th>
+            <th>Last Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.email %></td>
+              <td><%= customer.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= customer.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= link_to "view", admin_customer_path(customer), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>

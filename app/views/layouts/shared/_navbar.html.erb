@@ -1,0 +1,11 @@
+<nav class="navbar navbar-expand-lg bg-dark-subtle">
+  <div class="container-fluid">
+    <%= link_to "Auto part", root_path, class: "navbar-brand" %>
+    <div class="me-auto">
+      <ul class="navbar-nav">
+        <li class="nav-item"> <%= link_to "Home", home_path, class: "nav-link" %> </li>
+      </ul>
+    </div>
+    <%= render "layouts/shared/customer" %>
+  </div>
+</nav>

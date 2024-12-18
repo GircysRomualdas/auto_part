@@ -1,0 +1,34 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center p-3">
+      <h2 class="display-6">Part Types</h2>
+      <%= link_to "New Part Type", new_admin_part_type_path, class: "btn btn-primary" %>
+    </div>
+    <div class="mt-2">
+      <table class="table table-hover border-top">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Last Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @part_types.each do |part_type| %>
+            <tr>
+              <td style="width: 50px; height: 50px;" class="p-0 text-center align-middle">
+                <%= part_type.image.present? ? image_tag(part_type.image.variant(:small)) : image_tag("https://via.placeholder.com/50") %></td>
+              <td><%= part_type.name %></td>
+              <td><%= part_type.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= part_type.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= link_to "view", admin_part_type_path(part_type), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>
