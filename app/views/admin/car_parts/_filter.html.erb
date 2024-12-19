@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="col">
-      <div class="card p-2 mx-1">
+      <div class="card p-3 mx-1">
         <%= form.label :part_type_id_eq, "Types", class: "form-label fw-bold"  %>
         <div class="form-check-group row">
           <% @part_types.each do |part_type| %>
@@ -53,6 +53,7 @@
     </div>
     <div class="col my-2">
       <div class="d-flex justify-content-end">
+        <%= link_to "Clear Filter", admin_car_parts_path, class: "btn btn-primary mx-1" %>
         <%= form.submit "Filter", class: "btn btn-primary" %>
       </div>
     </div>

@@ -16,7 +16,8 @@
     </div>
     <div class="col col-12 my-2">
       <div class="d-flex justify-content-end">
-        <%= form.submit "Filter", class: "btn btn-primary" %>
+        <%= link_to "Clear Filter", admin_part_types_path, class: "btn btn-primary mx-1" %>
+        <%= form.submit "Filter", class: "btn btn-primary mx-1" %>
       </div>
     </div>
   </div>
