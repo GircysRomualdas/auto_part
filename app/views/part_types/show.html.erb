@@ -1,13 +1,8 @@
 <div>
   <%= link_to "back", home_path, class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
   <div>
-    <div class="row my-3">
-      <div class="col-md">
-        <h2 class="display-6">Car <%= @part_type.name %> Parts</h2>
-      </div>
-      <div class="col-md-5">
-        <%= render "home/search", path: part_type_path(@part_type), q: @q %>
-      </div>
+    <div class="my-2">
+      <%= render "part_types/search", path: part_type_path(@part_type), q: @q, part_type: @part_type %>
     </div>
     <% @car_parts.each do |car_part| %>
       <div class="card shadow-sm my-3">

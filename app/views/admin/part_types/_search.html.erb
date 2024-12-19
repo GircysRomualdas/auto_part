@@ -3,10 +3,10 @@
     <div class="col-md">
       <h2 class="display-6">Part Types</h2>
     </div>
-    <div class="col-md text-end">
+    <div class="col-md text-end px-1">
       <%= link_to "New Part Type", new_admin_part_type_path, class: "btn btn-primary" %>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5 px-1">
       <div class="input-group">
         <%= form.search_field :name_cont, class: "form-control" %>
         <%= form.submit "Search", class: "btn btn-primary" %>
