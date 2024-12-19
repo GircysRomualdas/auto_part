@@ -1,5 +1,20 @@
-<div>
-  <h2>Home page</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris gravida massa quis ultricies scelerisque. Donec luctus ipsum eget quam tempus, nec blandit neque consectetur. Etiam ultrices velit eget enim viverra efficitur. Fusce mollis, lorem nec ornare pulvinar, sapien dolor semper massa, sit amet gravida nulla tellus volutpat dolor. Mauris iaculis ligula a finibus ullamcorper. Aenean sit amet nulla velit. Aliquam ut purus tempor, tempor felis sed, tempor ipsum.</p>
-  <p>Donec mattis mattis porttitor. Ut auctor ultricies massa, ut commodo ipsum feugiat vitae. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas interdum, ex ac luctus varius, tellus augue suscipit metus, eu finibus metus turpis sed quam. Suspendisse ac eros in ex tristique iaculis quis eget lacus. Nunc et nibh ipsum. Pellentesque lacinia dui eget blandit ullamcorper. Nam in ex lacinia, pellentesque neque non, vehicula augue. Fusce semper elementum lacus vitae euismod. Sed placerat velit eu tortor faucibus fringilla. Aliquam auctor, nisi vel ultrices blandit, nunc arcu dapibus eros, quis lacinia ligula dui a est. In quis lacinia eros.</p>
+<div class="my-4">
+  <h2 class="display-6 mb-4">Home Page</h2>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
+    <% @part_types.each do |part_type| %>
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-img-top-wrapper" style="height: 200px; overflow: hidden;">
+            <%= part_type.image.present? ? image_tag(part_type.image.variant(:medium), class: "card-img-top img-fluid") : image_tag("https://via.placeholder.com/200", class: "card-img-top img-fluid") %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-truncate" style="max-width: 100%;"> <%= part_type.name %> </h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="mt-4">
+    <%= render "layouts/shared/pagination", pagy: @pagy %>
+  </div>
 </div>
