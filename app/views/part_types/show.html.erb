@@ -1,0 +1,30 @@
+<div>
+  <%= link_to "back", home_path, class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+  <div>
+    <h2 class="display-6 mb-4">Car <%= @part_type.name %> Parts</h2>
+    <% @car_parts.each do |car_part| %>
+      <div class="card shadow-sm my-3">
+        <%= link_to car_part_path(car_part), class: "text-decoration-none text-dark" do %>
+          <div class="row g-0">
+            <div class="col-md-3">
+              <%= car_part.image.present? ? image_tag(car_part.image.variant(:medium), class: "img-fluid h-100 w-auto") : image_tag("https://via.placeholder.com/200", class: "img-fluid h-100 w-auto") %>
+            </div>
+            <div class="col-md">
+              <div class="card-body">
+                <h5 class="card-title"><%= car_part.name %></h5>
+                <div class="card-text">
+                  <p><%= car_part.price %> €</p>
+                  <p><%= car_part.part_type.name %></p>
+                  <p><%= car_part.description %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="mt-4">
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>

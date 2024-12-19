@@ -1,15 +1,17 @@
-<div class="my-4">
-  <h2 class="display-6 mb-4">Home Page</h2>
+<div>
+  <h2 class="display-6 mb-4">Car Part Categories</h2>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
     <% @part_types.each do |part_type| %>
       <div class="col">
         <div class="card shadow-sm">
-          <div class="card-img-top-wrapper" style="height: 200px; overflow: hidden;">
-            <%= part_type.image.present? ? image_tag(part_type.image.variant(:medium), class: "card-img-top img-fluid") : image_tag("https://via.placeholder.com/200", class: "card-img-top img-fluid") %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-truncate" style="max-width: 100%;"> <%= part_type.name %> </h5>
-          </div>
+          <%= link_to part_type_path(part_type), class: "text-decoration-none text-dark" do %>
+            <div class="card-img-top-wrapper" style="height: 200px; overflow: hidden;">
+              <%= part_type.image.present? ? image_tag(part_type.image.variant(:medium), class: "img-fluid h-100 w-auto overflow-hidden") : image_tag("https://via.placeholder.com/200", class: "img-fluid h-100 w-auto overflow-hidden") %>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-truncate" style="max-width: 100%;"> <%= part_type.name %> </h5>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>

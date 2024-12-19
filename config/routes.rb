@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :part_types
+  resources :car_parts
+
   namespace :admin do
     resources :customers
     resources :part_types
