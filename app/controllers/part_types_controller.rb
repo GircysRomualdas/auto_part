@@ -1,6 +1,8 @@
 class PartTypesController < ApplicationController
   def show
     @part_type = PartType.find(params[:id])
-    @pagy, @car_parts = pagy(@part_type.car_parts)
+    part_types = @part_type.car_parts
+    @q = part_types.ransack(params[:q])
+    @pagy, @car_parts = pagy(@q.result(distinct: true))
   end
 end

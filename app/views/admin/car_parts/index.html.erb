@@ -1,19 +1,19 @@
 <div class="card shadow-sm">
   <div class="card-body">
-    <div class="p-3">
-      <h2 class="display-6">Car parts</h2>
+    <div class="my-2">
+      <%= render "admin/car_parts/search", path: admin_car_parts_path, q: @q, part_types: @part_types %>
     </div>
-    <div class="mt-2">
+    <div class="my-2">
       <table class="table table-hover border-top">
         <thead>
           <tr>
             <th></th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Active</th>
-            <th>Type</th>
-            <th>Created</th>
-            <th>Last Updated</th>
+            <th><%= sort_link(@q, :name, "Name", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :price, "Price", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :active, "Active", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :part_type, "Type", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :created_at, "Created", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :updated_at, "Last Updated", class: "text-decoration-none text-black") %></th>
             <th></th>
           </tr>
         </thead>

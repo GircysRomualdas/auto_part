@@ -1,5 +1,12 @@
 <div>
-  <h2 class="display-6 mb-4">Car Part Categories</h2>
+  <div class="row my-3">
+    <div class="col-md">
+      <h2 class="display-6">Car Part Categories</h2>
+    </div>
+    <div class="col-md-5">
+      <%= render "home/search", path: home_path, q: @q %>
+    </div>
+  </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
     <% @part_types.each do |part_type| %>
       <div class="col">

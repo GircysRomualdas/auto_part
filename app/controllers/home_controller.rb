@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @pagy, @part_types = pagy(PartType.all)
+    part_types = PartType.all
+    @q = part_types.ransack(params[:q])
+    @pagy, @part_types = pagy(@q.result(distinct: true))
   end
 end

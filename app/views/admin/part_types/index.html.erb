@@ -1,17 +1,16 @@
 <div class="card shadow-sm">
   <div class="card-body">
-    <div class="d-flex justify-content-between align-items-center p-3">
-      <h2 class="display-6">Part Types</h2>
-      <%= link_to "New Part Type", new_admin_part_type_path, class: "btn btn-primary" %>
+    <div class="my-2">
+      <%= render "admin/part_types/search", path: admin_part_types_path, q: @q %>
     </div>
     <div class="mt-2">
       <table class="table table-hover border-top">
         <thead>
           <tr>
             <th></th>
-            <th>Name</th>
-            <th>Created</th>
-            <th>Last Updated</th>
+            <th><%= sort_link(@q, :name, "Name", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :created_at, "Created", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :updated_at, "Last Updated", class: "text-decoration-none text-black") %></th>
             <th></th>
           </tr>
         </thead>

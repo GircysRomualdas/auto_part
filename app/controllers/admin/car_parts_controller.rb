@@ -1,7 +1,11 @@
 class Admin::CarPartsController < AdminController
   before_action :set_car_part, only: %i[ show destroy ]
   def index
-    @pagy, @car_parts = pagy(CarPart.all)
+    car_parts = CarPart.all
+    @q = car_parts.ransack(params[:q])
+    @pagy, @car_parts = pagy(@q.result(distinct: true).includes(:part_type))
+
+    @part_types = PartType.all
   end
 
   def show

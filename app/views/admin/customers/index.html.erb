@@ -1,15 +1,20 @@
 <div class="card shadow-sm">
   <div class="card-body">
-    <div class="p-3">
-      <h2 class="display-6">Customers</h2>
+    <div class="row">
+      <div class="col-md">
+        <h2 class="display-6">Customers</h2>
+      </div>
+      <div class="col-md-5">
+        <%= render "admin/customers/search", path: admin_customers_path, q: @q %>
+      </div>
     </div>
     <div class="mt-2">
       <table class="table table-hover border-top">
         <thead>
           <tr>
-            <th>Email</th>
-            <th>Created</th>
-            <th>Last Updated</th>
+            <th><%= sort_link(@q, :email, "Email", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :created_at, "Created", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :updated_at, "Last Updated", class: "text-decoration-none text-black") %></th>
             <th></th>
           </tr>
         </thead>

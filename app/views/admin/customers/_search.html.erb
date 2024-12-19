@@ -1,0 +1,6 @@
+<%= search_form_for(q, url: path, method: :get) do |form| %>
+  <div class="input-group">
+    <%= form.search_field :email_cont, class: "form-control" %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  </div>
+<% end %>
