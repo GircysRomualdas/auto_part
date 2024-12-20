@@ -1,12 +1,11 @@
-<nav class="navbar">
-  <div class="m-1">
-    <h4>Admin</h4>
-    <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto">
-      <%= render "layouts/shared/admin/admin" %>
-      <li class="nav-item"><%= link_to "Home", admin_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Customers", admin_customers_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Part Types", admin_part_types_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Car parts", admin_car_parts_path, class: "nav-link" %></li>
-    </ul>
-  </div>
-</nav>
+<div class="mb-auto">
+  <h4><%= link_to "Admin Dashboard", admin_path, class: "navbar-brand text-white" %></h4>
+  <hr>
+  <ul class="nav flex-column">
+    <li class="nav-item"><%= link_to "Dashboard", admin_path, class: "nav-link text-white" %></li>
+    <li class="nav-item"><%= link_to "Customers", admin_customers_path, class: "nav-link text-white" %></li>
+    <li class="nav-item"><%= link_to "Part Types", admin_part_types_path, class: "nav-link text-white" %></li>
+    <li class="nav-item"><%= link_to "Car parts", admin_car_parts_path, class: "nav-link text-white" %></li>
+  </ul>
+</div>
+<%= render "layouts/shared/admin/admin" %>

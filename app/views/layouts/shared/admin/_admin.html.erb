@@ -1,4 +1,14 @@
-<div>
-  <li class="nav-item"><%= link_to current_admin.email, edit_admin_registration_path, class: "nav-link" %></li>
-  <li class="nav-item"><%= button_to "Sign out", destroy_admin_session_path, class: "nav-link", method: :delete %></li>
+<div class="mt-auto">
+  <div class="dropdown">
+    <hr>
+    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-white" id="dropdownAdmin" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong><%= current_admin.email %></strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownAdmin">
+      <li><%= link_to "Edit Profile", edit_admin_registration_path, class: "dropdown-item" %></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><%= button_to "Sign out", destroy_admin_session_path, class: "dropdown-item", method: :delete %></li>
+    </ul>
+  </div>
 </div>

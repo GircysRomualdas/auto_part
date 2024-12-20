@@ -24,7 +24,9 @@
                 <%= car_part.image.present? ? image_tag(car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/50") %></td>
               <td><%= car_part.name %></td>
               <td><%= car_part.price %> €</td>
-              <td><%= car_part.active %></td>
+              <td class="<%= get_active_status(car_part.active) %> fw-bold">
+                <%= car_part.active ? 'Active' : 'Inactive' %>
+              </td>
               <td><%= car_part.part_type.name %></td>
               <td><%= car_part.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= car_part.updated_at.strftime("%Y-%m-%d %H:%M") %></td>

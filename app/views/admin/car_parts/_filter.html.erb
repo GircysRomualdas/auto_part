@@ -31,7 +31,7 @@
         <div class="col col-3">
           <div>
             <%= form.label :active_eq, "Active", class: "form-label fw-bold"  %>
-            <%= form.select :active_eq, [["All", ""], ["True", true], ["False", false]], {}, { class: "form-select" } %>
+            <%= form.select :active_eq, [["All", ""], ["Active", true], ["Inactive", false]], {}, { class: "form-select" } %>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
     </div>
     <div class="col my-2">
       <div class="d-flex justify-content-end">
-        <%= link_to "Clear Filter", admin_car_parts_path, class: "btn btn-primary mx-1" %>
+        <%= link_to "Clear Filter", admin_car_parts_path, class: "btn btn-secondary mx-1" %>
         <%= form.submit "Filter", class: "btn btn-primary" %>
       </div>
     </div>

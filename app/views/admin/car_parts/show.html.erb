@@ -20,7 +20,7 @@
               <h5 class="card-title">Car Part Details</h5>
               <p class="mb-2"><strong>Name</strong> <%= @car_part.name %></p>
               <p class="mb-2"><strong>Price</strong> <%= @car_part.price %> €</p>
-              <p class="mb-2"><strong>Active</strong> <%= @car_part.active %></p>
+              <p class="mb-2"><strong>Active</strong> <span class="<%= get_active_status(@car_part.active) %> fw-bold"><%= @car_part.active ? 'Active' : 'Inactive' %></span></p>
               <p class="mb-2"><strong>Type</strong> <%= @car_part.part_type.name %></p>
               <p class="mb-2"><strong>Created</strong> <%= @car_part.created_at.strftime("%Y-%m-%d %H:%M") %></p>
               <p class="mb-2"><strong>Last updated</strong> <%= @car_part.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
