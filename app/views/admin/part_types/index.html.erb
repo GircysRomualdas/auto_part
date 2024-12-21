@@ -3,7 +3,7 @@
     <div class="my-2">
       <%= render "admin/part_types/search", path: admin_part_types_path, q: @q %>
     </div>
-    <div class="mt-2">
+    <div class="mt-2 card">
       <table class="table table-hover border-top">
         <thead>
           <tr>
@@ -17,12 +17,12 @@
         <tbody>
           <% @part_types.each do |part_type| %>
             <tr>
-              <td style="width: 50px; height: 50px;" class="p-0 text-center align-middle">
-                <%= part_type.image.present? ? image_tag(part_type.image.variant(:small)) : image_tag("https://via.placeholder.com/50") %></td>
+              <td class="p-0 text-center align-middle">
+                <%= part_type.image.present? ? image_tag(part_type.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
               <td><%= part_type.name %></td>
               <td><%= part_type.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= part_type.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-              <td><%= link_to "view", admin_part_type_path(part_type), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %> </td>
+              <td class="p-0 text-end align-middle"><%= link_to "View", admin_part_type_path(part_type), class: "btn btn-outline-secondary" %></td>
             </tr>
           <% end %>
         </tbody>

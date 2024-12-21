@@ -29,7 +29,7 @@ end
 
 
 type_data = [
-  { name: "Engine", description: "The engine converts fuel into mechanical energy to power the vehicle.", url: "https://traton.com/.imaging/mte/tab-theme/standardLandscape-XL/dam/02_Newsroom/01_News/Ehrenrunde-f%C3%BCr-den-Diesel/traton-header-cbe-motor.jpg/jcr:content/traton-header-cbe-motor.jpg" },
+  { name: "Engine", description: "The engine converts fuel into mechanical energy to power the vehicle.", url: "https://i.pinimg.com/736x/89/2a/59/892a5959d7ceca61c2e6161b54d72fea--used-engines-remanufactured-engines.jpg" },
   { name: "Transmission", description: "The transmission system transfers power from the engine to the wheels.", url: "https://highgradeauto.com/wp-content/uploads/2014/06/Cars-Transmissions.jpg" },
   { name: "Alternator", description: "The alternator generates electrical power to charge the battery and run electrical systems.", url: "https://heielectric.com/wp-content/uploads/2023/05/7.3-200A.jpg" },
   { name: "Brake Pads", description: "Brake pads provide friction to slow down and stop the vehicle.", url: "https://neobrake.com/wp-content/uploads/2016/06/NeoBrake-Air-Disc-Brake-Pads-2.1.png" },

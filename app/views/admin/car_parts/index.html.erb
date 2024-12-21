@@ -3,7 +3,7 @@
     <div class="my-2">
       <%= render "admin/car_parts/search", path: admin_car_parts_path, q: @q, part_types: @part_types %>
     </div>
-    <div class="my-2">
+    <div class="mt-2 card">
       <table class="table table-hover border-top">
         <thead>
           <tr>
@@ -20,8 +20,8 @@
         <tbody>
           <% @car_parts.each do |car_part| %>
             <tr>
-              <td style="width: 50px; height: 50px;" class="p-0 text-center align-middle">
-                <%= car_part.image.present? ? image_tag(car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/50") %></td>
+              <td class="p-0 text-center align-middle">
+                <%= car_part.image.present? ? image_tag(car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
               <td><%= car_part.name %></td>
               <td><%= car_part.price %> €</td>
               <td class="<%= get_active_status(car_part.active) %> fw-bold">
@@ -30,7 +30,7 @@
               <td><%= car_part.part_type.name %></td>
               <td><%= car_part.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= car_part.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-              <td><%= link_to "view", admin_car_part_path(car_part), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+              <td class="p-0 text-end align-middle"><%= link_to "View", admin_car_part_path(car_part), class: "btn btn-outline-secondary" %></td>
             </tr>
           <% end %>
         </tbody>

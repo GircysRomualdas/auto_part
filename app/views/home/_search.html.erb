@@ -1,6 +1,8 @@
 <%= search_form_for(q, url: path, method: :get) do |form| %>
   <div class="input-group">
-    <%= form.search_field :name_cont, class: "form-control" %>
-    <%= form.submit "Search", class: "btn btn-primary" %>
+    <%= form.search_field :name_cont, class: "form-control", placeholder: "Search by category" %>
+    <button class="btn btn-primary" type="submit">
+      <i class="bi bi-search"></i>
+    </button>
   </div>
 <% end %>

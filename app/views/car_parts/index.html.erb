@@ -1,31 +1,29 @@
 <div>
-  <div>
-    <div class="my-2">
-      <%= render "car_parts/search", path: car_parts_path, q: @q, part_types: @part_types %>
-    </div>
-    <% @car_parts.each do |car_part| %>
-      <div class="card shadow-sm my-3">
-        <%= link_to car_part_path(car_part), class: "text-decoration-none text-dark" do %>
-          <div class="row g-0">
-            <div class="col-md-3">
-              <%= car_part.image.present? ? image_tag(car_part.image.variant(:medium), class: "img-fluid h-100 w-auto") : image_tag("https://via.placeholder.com/200", class: "img-fluid h-100 w-auto") %>
-            </div>
-            <div class="col-md">
-              <div class="card-body">
-                <h5 class="card-title"><%= car_part.name %></h5>
-                <div class="card-text">
-                  <p><%= car_part.price %> €</p>
-                  <p><%= car_part.part_type.name %></p>
-                  <p><%= car_part.description %></p>
-                </div>
+  <div class="my-2">
+    <%= render "car_parts/search", path: car_parts_path, q: @q, part_types: @part_types %>
+  </div>
+  <% @car_parts.each do |car_part| %>
+    <div class="card shadow-sm my-3">
+      <%= link_to car_part_path(car_part), class: "text-decoration-none text-dark" do %>
+        <div class="row g-0">
+          <div class="col-md-3">
+            <%= car_part.image.present? ? image_tag(car_part.image.variant(:medium), class: "img-fluid h-100 w-auto") : image_tag("https://via.placeholder.com/200", class: "img-fluid h-100 w-auto") %>
+          </div>
+          <div class="col-md">
+            <div class="card-body">
+              <h5 class="card-title"><%= car_part.name %></h5>
+              <div class="card-text">
+                <p><%= car_part.price %> €</p>
+                <p><%= car_part.part_type.name %></p>
+                <p><%= car_part.description %></p>
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="mt-4">
-      <%= render "layouts/shared/pagination", pagy: @pagy %>
+        </div>
+      <% end %>
     </div>
+  <% end %>
+  <div class="mt-4">
+    <%= render "layouts/shared/pagination", pagy: @pagy %>
   </div>
 </div>

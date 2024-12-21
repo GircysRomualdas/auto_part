@@ -13,7 +13,9 @@
         <div class="card shadow-sm">
           <%= link_to part_type_path(part_type), class: "text-decoration-none text-dark" do %>
             <div class="card-img-top-wrapper" style="height: 200px; overflow: hidden;">
-              <%= part_type.image.present? ? image_tag(part_type.image.variant(:medium), class: "img-fluid h-100 w-auto overflow-hidden") : image_tag("https://via.placeholder.com/200", class: "img-fluid h-100 w-auto overflow-hidden") %>
+              <div class="d-flex align-items-center justify-content-center h-100">
+                <%= part_type.image.present? ? image_tag(part_type.image.variant(:medium), class: "img-fluid") : image_tag("https://via.placeholder.com/200", class: "img-fluid") %>
+              </div>
             </div>
             <div class="card-body">
               <h5 class="card-title text-truncate" style="max-width: 100%;"> <%= part_type.name %> </h5>
