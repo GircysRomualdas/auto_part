@@ -1,5 +1,5 @@
 <div>
-  <%= link_to "Back", :back, class: "btn btn-outline-secondary mb-2" %>
+  <%= button_to "Back", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2" %>
   <div>
     <div class="my-2">
       <%= render "part_types/search", path: part_type_path(@part_type), q: @q, part_type: @part_type %>
