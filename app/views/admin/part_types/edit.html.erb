@@ -1,9 +1,9 @@
 <div class="row justify-content-center">
   <div class="col-md-6">
-    <%= button_to "Back", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2" %>
+    <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
     <div class="card shadow-sm mt-3">
       <div class="card-body">
-        <h3 class="mb-4 text-center">Edit part type</h3>
+        <h3 class="mb-4 text-center">Edit Part Type</h3>
         <%= render "form", part_type: @part_type %>
       </div>
     </div>

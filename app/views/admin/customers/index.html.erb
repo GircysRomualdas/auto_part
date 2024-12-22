@@ -23,7 +23,7 @@
               <td><%= customer.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= customer.current_sign_in_at.present? ? customer.current_sign_in_at.strftime("%Y-%m-%d %H:%M") : "N/A" %></td>
               <td><%= customer.last_sign_in_at.present? ? customer.last_sign_in_at.strftime("%Y-%m-%d %H:%M") : "N/A" %></td>
-              <td class="p-0 text-end align-middle"><%= link_to "View", admin_customer_path(customer), class: "btn btn-outline-secondary" %></td>
+              <td class="p-0 text-end align-middle"><%= link_to "", admin_customer_path(customer), class: "btn btn-outline-secondary bi bi-eye" %></td>
             </tr>
           <% end %>
         </tbody>

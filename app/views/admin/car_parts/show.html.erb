@@ -1,10 +1,10 @@
 <div>
-  <%= button_to "Back", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2" %>
-  <div class="card shadow-sm p-3">
+  <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
+  <div class="card shadow-sm p-4">
     <div class="d-flex justify-content-between">
       <h2 class="display-6">Car Part Details</h2>
       <div class="d-flex">
-        <%= button_to "Delete Car Part", admin_car_part_path(@car_part), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+        <%= button_to "", admin_car_part_path(@car_part), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger bi bi-trash" %>
       </div>
     </div>
     <div class="row">
@@ -20,6 +20,10 @@
             <div class="d-flex justify-content-between border-bottom my-1">
               <span class="fw-bold">Name</span>
               <span><%= @car_part.name %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Created By</span>
+              <span><%= link_to @car_part.seller.email, admin_seller_path(@car_part.seller), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></span>
             </div>
             <div class="d-flex justify-content-between border-bottom my-1">
               <span class="fw-bold">Price</span>

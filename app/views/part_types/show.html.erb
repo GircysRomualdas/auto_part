@@ -1,5 +1,5 @@
 <div>
-  <%= button_to "Back", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2" %>
+  <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
   <div>
     <div class="my-2">
       <%= render "part_types/search", path: part_type_path(@part_type), q: @q, part_type: @part_type %>
@@ -7,19 +7,26 @@
     <% @car_parts.each do |car_part| %>
       <div class="card shadow-sm my-3">
         <%= link_to car_part_path(car_part), class: "text-decoration-none text-dark" do %>
-          <div class="row g-0">
+          <div class="row g-0" style="height: 200px;">
             <div class="col-md-3">
               <div class="d-flex align-items-center justify-content-center h-100">
-                <%= car_part.image.present? ? image_tag(car_part.image.variant(:medium), class: "img-fluid h-100 w-auto") : image_tag("https://via.placeholder.com/200", class: "img-fluid") %>
+                <%= car_part.image.present? ? image_tag(car_part.image.variant(:medium), class: "img-fluid rounded-start h-100 w-auto") : image_tag("https://via.placeholder.com/200", class: "img-fluid rounded-start") %>
               </div>
             </div>
             <div class="col-md">
               <div class="card-body">
-                <h5 class="card-title"><%= car_part.name %></h5>
+                <div class="border-bottom">
+                  <div class="py-1">
+                    <h5 class="card-title my-auto"><%= car_part.name %></h5>
+                  </div>
+                </div>
                 <div class="card-text">
-                  <p><%= car_part.price %> €</p>
-                  <p><%= car_part.part_type.name %></p>
-                  <p><%= car_part.description %></p>
+                  <div>
+                    <p><%= car_part.price %> €</p>
+                  </div>
+                  <div>
+                    <p><%= car_part.part_type.name %></p>
+                  </div>
                 </div>
               </div>
             </div>

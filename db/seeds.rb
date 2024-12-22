@@ -3,8 +3,10 @@ require 'open-uri'
 CarPart.destroy_all
 PartType.destroy_all
 Customer.destroy_all
+Seller.destroy_all
 Admin.destroy_all
 
+# create customer
 customer_data = []
 
 22.times do |i|
@@ -16,6 +18,7 @@ customer_data.each do |data|
   customers << Customer.create!(data)
 end
 
+# create admin
 admin_data = []
 
 3.times do |i|
@@ -27,7 +30,20 @@ admin_data.each do |data|
   admins << Admin.create!(data)
 end
 
+# create seller
+seller_data = []
 
+12.times do |i|
+  admin = admins.sample
+  seller_data << { email: "seller#{i+1}@gmail.com", password: "password", admin_id: admin.id }
+end
+
+sellers = []
+seller_data.each do |data|
+  sellers << Seller.create!(data)
+end
+
+# create part type
 type_data = [
   { name: "Engine", description: "The engine converts fuel into mechanical energy to power the vehicle.", url: "https://i.pinimg.com/736x/89/2a/59/892a5959d7ceca61c2e6161b54d72fea--used-engines-remanufactured-engines.jpg" },
   { name: "Transmission", description: "The transmission system transfers power from the engine to the wheels.", url: "https://highgradeauto.com/wp-content/uploads/2014/06/Cars-Transmissions.jpg" },
@@ -46,7 +62,6 @@ type_data = [
   { name: "Air Filter", description: "The air filter prevents dirt and debris from entering the engine.", url: "https://www.quality-tuning.eu/images/stories/virtuemart/product/WS-002-1-simota-air-filter-(1).jpg" }
 ]
 
-
 part_types = []
 type_data.each do |data|
   part_type = PartType.create!(
@@ -57,7 +72,7 @@ type_data.each do |data|
   part_type.image.attach(io: URI.open(data[:url]), filename: "image.jpg")
 end
 
-
+# create car part
 car_parts_data = [
   { name: "V8 Engine", description: "High-performance V8 engine for sports cars.", price: 2500.00, part_type_name: "Engine", active: true, url: "https://cimg1.ibsrv.net/ibimg/hgm/1600x900-1/100/448/2014-volvo-v8-supercars-race-car-engine_100448945.jpg" },
   { name: "Automatic Transmission", description: "Smooth automatic transmission for sedans.", price: 1500.00, part_type_name: "Transmission", active: true, url: "https://www.autoblog.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_640/MjA5MTUyODc0Njk2MTU2Nzg0/image-placeholder-title.webp" },
@@ -228,6 +243,7 @@ car_parts_data.each do |data|
     description: data[:description],
     price: data[:price],
     part_type: part_type,
+    seller: sellers.sample,
     active: data[:active]
   )
 

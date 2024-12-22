@@ -12,7 +12,7 @@ class Admin::CustomersController < AdminController
   def destroy
     @customer.destroy!
 
-    redirect_to admin_customers_path, notice: "customer was seccessfully destroyed."
+    redirect_to admin_customers_path, notice: "Customer was seccessfully destroyed."
   end
 
   private

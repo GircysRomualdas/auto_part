@@ -2,13 +2,23 @@
   <div class="dropdown">
     <hr>
     <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-white" id="dropdownAdmin" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      <i class="bi bi-person-circle fs-3 mx-2"></i>
       <strong><%= current_admin.email %></strong>
     </a>
     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownAdmin">
-      <li><%= link_to "Edit Profile", edit_admin_registration_path, class: "dropdown-item" %></li>
+      <li>
+        <div class="d-flex px-2">
+          <i class="bi bi-box-arrow-right fs-5 bi bi-pencil"></i>
+          <%= link_to "Edit Profile", edit_admin_registration_path, class: "dropdown-item" %>
+        </div>
+      </li>
       <li><hr class="dropdown-divider"></li>
-      <li><%= button_to "Sign out", destroy_admin_session_path, class: "dropdown-item", method: :delete %></li>
+      <li>
+        <div class="d-flex px-2">
+          <i class="bi bi-box-arrow-right fs-5 my-auto"></i>
+          <%= button_to "Sign out", destroy_admin_session_path, class: "dropdown-item", method: :delete %>
+        </div>
+      </li>
     </ul>
   </div>
 </div>

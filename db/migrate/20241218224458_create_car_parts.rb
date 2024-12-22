@@ -5,6 +5,7 @@ class CreateCarParts < ActiveRecord::Migration[8.0]
       t.text :description
       t.decimal :price
       t.references :part_type, null: false, foreign_key: true
+      t.references :seller, null: false, foreign_key: true
       t.boolean :active
 
       t.timestamps

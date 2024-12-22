@@ -1,21 +1,35 @@
 <div>
-  <%= button_to "Back", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2" %>
+  <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
   <div>
-    <h2 class="display-6">Car <%= @car_part.part_type.name %> Part</h2>
+    <div class="d-flex justify-content-between mb-3">
+      <h2 class="display-6">Car <%= @car_part.part_type.name %> Part</h2>
+      <div>
+        <%= link_to "Add to Cart", home_path, class: "btn btn-success" %>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-5 d-flex justify-content-center mb-4">
         <%= @car_part.image.present? ? image_tag(@car_part.image.variant(:large), class: "img-fluid rounded shadow") : image_tag("https://via.placeholder.com/500", class: "img-fluid rounded shadow") %>
       </div>
       <div class="col-md-7">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Car Part Details</h5>
-            <p class="mb-2"><strong>Name</strong> <%= @car_part.name %></p>
-            <p class="mb-2"><strong>Price</strong> <%= @car_part.price %> €</p>
-            <p class="mb-2"><strong>Type</strong> <%= @car_part.part_type.name %></p>
-            <div>
-              <p class="mb-0"><strong>Description</strong></p>
-              <p class="mt-0"><%= @car_part.description %></p>
+        <div class="card shadow-sm p-4">
+          <h5 class="text-center mb-3">Car Part Information</h5>
+          <div class="text-muted px-3">
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Name</span>
+              <span><%= @car_part.name %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Price</span>
+              <span><%= @car_part.price %> €</span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Part Type</span>
+              <span><%= @car_part.part_type.name %></span>
+            </div>
+            <div class="border-bottom my-1">
+              <div class="fw-bold">Description</div>
+              <p><%= @car_part.description %></p>
             </div>
           </div>
         </div>

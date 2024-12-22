@@ -1,0 +1,24 @@
+<div class="mt-auto">
+  <div class="dropdown">
+    <hr>
+    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-white" id="dropdownSeller" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-person-circle fs-3 mx-2"></i>
+      <strong><%= current_seller.email %></strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownSeller">
+      <li>
+        <div class="d-flex px-2">
+          <i class="bi bi-box-arrow-right fs-5 bi bi-pencil"></i>
+          <%= link_to "Edit Profile", edit_seller_registration_path, class: "dropdown-item" %>
+        </div>
+      </li>
+      <li><hr class="dropdown-divider"></li>
+      <li>
+        <div class="d-flex px-2">
+          <i class="bi bi-box-arrow-right fs-5 my-auto"></i>
+          <%= button_to "Sign out", destroy_seller_session_path, class: "dropdown-item", method: :delete %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
+    <div class="card shadow-sm mt-3">
+      <div class="card-body">
+        <h3 class="mb-4 text-center">Create Seller</h3>
+        <%= render "form", seller: @seller %>
+      </div>
+    </div>
+  </div>
+</div>

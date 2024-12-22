@@ -1,9 +1,9 @@
 <div>
-  <%= link_to "Back", :back, class: "btn btn-outline-secondary mb-2" %>
-  <div class="card shadow-sm p-3">
+  <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
+  <div class="card shadow-sm p-4">
     <div class="d-flex justify-content-between">
       <h1 class="display-6">Customer Details</h1>
-      <%= button_to "Delete Customer", admin_customer_path(@customer), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+      <%= button_to "", admin_customer_path(@customer), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger bi bi-trash" %>
     </div>
     <div class="row g-4 mt-2">
       <div class="col-8">

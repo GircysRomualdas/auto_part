@@ -16,11 +16,11 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Filters
+          <i class="bi bi-funnel fs-5"></i>
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#filtersAccordion">
-        <div class="accordion-body">
+        <div class="accordion-body bg-body-tertiary">
           <%= render "admin/customers/filter", path: path, q: q %>
         </div>
       </div>

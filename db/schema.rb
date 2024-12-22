@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_18_224458) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_21_125835) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,10 +61,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_224458) do
     t.text "description"
     t.decimal "price"
     t.integer "part_type_id", null: false
+    t.integer "seller_id", null: false
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["part_type_id"], name: "index_car_parts_on_part_type_id"
+    t.index ["seller_id"], name: "index_car_parts_on_seller_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -91,7 +93,28 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_224458) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sellers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.integer "admin_id", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_sellers_on_admin_id"
+    t.index ["email"], name: "index_sellers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "car_parts", "part_types"
+  add_foreign_key "car_parts", "sellers"
+  add_foreign_key "sellers", "admins"
 end

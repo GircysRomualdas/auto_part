@@ -1,0 +1,32 @@
+<%= search_form_for(q, url: path, method: :get, class: "mb-4") do |form| %>
+  <div class="row align-items-center mb-3">
+    <div class="col-md">
+      <h2 class="display-6">My Car Parts</h2>
+    </div>
+    <div class="col-md text-end">
+      <%= link_to "Create Car Part", new_seller_car_part_path, class: "btn btn-outline-secondary" %>
+    </div>
+    <div class="col-md-5">
+      <div class="input-group">
+        <%= form.search_field :name_cont, class: "form-control", placeholder: "Search by name" %>
+        <button class="btn btn-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="accordion" id="filtersAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <i class="bi bi-funnel fs-5"></i>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#filtersAccordion">
+        <div class="accordion-body bg-body-tertiary">
+          <%= render "seller/car_parts/filter", path: path, q: q, part_types: part_types %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

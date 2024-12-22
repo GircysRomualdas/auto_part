@@ -3,7 +3,7 @@ class Admin::CarPartsController < AdminController
   def index
     car_parts = CarPart.all
     @q = car_parts.ransack(params[:q])
-    @pagy, @car_parts = pagy(@q.result(distinct: true).includes(:part_type))
+    @pagy, @car_parts = pagy(@q.result(distinct: true).includes(:part_type).includes(:seller))
 
     @part_types = PartType.all
   end

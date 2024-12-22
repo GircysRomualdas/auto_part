@@ -1,0 +1,2 @@
+module Seller::CarPartsHelper
+end
