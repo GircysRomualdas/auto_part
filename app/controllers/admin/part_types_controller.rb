@@ -1,7 +1,7 @@
 class Admin::PartTypesController < AdminController
   before_action :set_part_type, only: %i[ show edit update destroy ]
   def index
-    part_types = PartType.all
+    part_types = PartType.all.order(created_at: :desc)
     @q = part_types.ransack(params[:q])
     @pagy, @part_types = pagy(@q.result(distinct: true))
   end
@@ -22,7 +22,7 @@ class Admin::PartTypesController < AdminController
     if @part_type.save
       redirect_to admin_part_type_path(@part_type), notice: "Part type successfully created."
     else
-      render :new, alert: "Error when craeting part type"
+      render :new, status: :unprocessable_entity, alert: "Error when craeting part type"
     end
   end
 
@@ -30,7 +30,7 @@ class Admin::PartTypesController < AdminController
     if @part_type.update(part_type_params)
       redirect_to admin_part_type_path(@part_type), notice: "Part type successfully updated."
     else
-      render :edit, alert: "Error when updating part type"
+      render :edit, status: :unprocessable_entity, alert: "Error when updating part type"
     end
   end
 

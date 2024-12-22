@@ -1,7 +1,7 @@
 class Admin::SellersController < AdminController
   before_action :set_seller, only: %i[ show destroy ]
   def index
-    sellers = Seller.all
+    sellers = Seller.all.order(created_at: :desc)
     @q = sellers.ransack(params[:q])
     @pagy, @sellers = pagy(@q.result(distinct: true).includes(:admin))
   end
@@ -25,7 +25,7 @@ class Admin::SellersController < AdminController
     if @seller.save
       redirect_to admin_seller_path(@seller), notice: "Seller successfully created."
     else
-      render :new, alert: "Error when craeting seller"
+      render :new, status: :unprocessable_entity, alert: "Error when craeting seller"
     end
   end
 

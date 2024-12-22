@@ -1,7 +1,7 @@
 class Admin::CustomersController < AdminController
   before_action :set_customer, only: %i[ show destroy ]
   def index
-    customers = Customer.all
+    customers = Customer.all.order(created_at: :desc)
     @q = customers.ransack(params[:q])
     @pagy, @customers = pagy(@q.result(distinct: true))
   end

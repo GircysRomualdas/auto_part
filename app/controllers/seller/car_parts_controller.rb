@@ -1,13 +1,12 @@
 class Seller::CarPartsController < SellerController
   before_action :set_car_part, only: %i[show edit update destroy]
+  before_action :set_part_types, only: %i[index new edit create update ]
   before_action :authorize_seller!, only: %i[show edit update destroy]
 
   def index
     car_parts = CarPart.where(seller: current_seller).order(created_at: :desc)
     @q = car_parts.ransack(params[:q])
     @pagy, @car_parts = pagy(@q.result(distinct: true).includes(:part_type))
-
-    @part_types = PartType.all
   end
 
   def show
@@ -15,11 +14,9 @@ class Seller::CarPartsController < SellerController
 
   def new
     @car_part = CarPart.new
-    @part_types = PartType.all
   end
 
   def edit
-    @part_types = PartType.all
   end
 
   def create
@@ -28,7 +25,7 @@ class Seller::CarPartsController < SellerController
     if @car_part.save
       redirect_to seller_car_part_path(@car_part), notice: "Car part successfully created."
     else
-      render :new, alert: "Error when creating car part."
+      render :new, status: :unprocessable_entity, alert: "Error when creating car part."
     end
   end
 
@@ -36,7 +33,7 @@ class Seller::CarPartsController < SellerController
     if @car_part.update(car_part_params)
       redirect_to seller_car_part_path(@car_part), notice: "Car part successfully updated."
     else
-      render :edit, alert: "Error when updating car part."
+      render :edit, status: :unprocessable_entity, alert: "Error when updating car part."
     end
   end
 
@@ -55,6 +52,10 @@ class Seller::CarPartsController < SellerController
 
     def set_car_part
       @car_part = CarPart.find(params.expect(:id))
+    end
+
+    def set_part_types
+      @part_types = PartType.all
     end
 
     def car_part_params

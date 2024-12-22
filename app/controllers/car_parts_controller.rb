@@ -1,6 +1,6 @@
 class CarPartsController < ApplicationController
   def index
-    car_parts = CarPart.where(active: true)
+    car_parts = CarPart.where(active: true).order(created_at: :desc)
     @q = car_parts.ransack(params[:q])
     @pagy, @car_parts = pagy(@q.result(distinct: true).includes(:part_type))
 

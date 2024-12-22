@@ -1,10 +1,12 @@
 <%= form_with(model: [:seller, car_part]) do |form| %>
   <% if car_part.errors.any? %>
-    <ul>
-      <% car_part.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+    <div class="alert alert-danger">
+      <ul>
+        <% car_part.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
   <div class="field my-1">
     <%= form.label :name, class: "form-label" %>

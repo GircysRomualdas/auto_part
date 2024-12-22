@@ -1,10 +1,12 @@
 <%= form_with(model: [:admin, part_type]) do |form| %>
   <% if part_type.errors.any? %>
-    <ul>
-      <% part_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+    <div class="alert alert-danger">
+      <ul>
+        <% part_type.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
   <div class="field my-1">
     <%= form.label :name, class: "form-label" %>
