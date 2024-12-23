@@ -1,0 +1,55 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <%= render "customer/carts/search", path: customer_cart_path(current_customer.cart), q: @q, part_types: @part_types %>
+    </div>
+    <div class="mt-2 card">
+      <div class="m-2">
+        <div class="d-flex justify-content-end my-auto fs-5">
+          <div class="card p-2">
+            <div class="mx-1">
+              <span class="fw-bold border-end border-3 pe-5">Total Cart Price </span> <span class="ps-5"><%= @cart.total_price %> €</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-hover border-top">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= sort_link(@q, :car_part_name, "Car Part", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :car_part_price, "Part Price", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :car_part_part_type_name, "Part Type", class: "text-decoration-none text-black") %></th>
+            <th>Total Price</th>
+            <th class="col-2"><%= sort_link(@q, :quantity, "Quantity", class: "text-decoration-none text-black") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td class="p-0 text-center align-middle">
+                <%= cart_item.car_part.image.present? ? image_tag(cart_item.car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
+              <td><%= cart_item.car_part.name %></td>
+              <td><%= cart_item.car_part.price %> €</td>
+              <td><%= cart_item.car_part.part_type.name %></td>
+              <td><%= cart_item.total_price  %> €</td>
+              <td>
+                <%= form_with(model: [:customer, cart_item], local: true, method: :patch) do |form| %>
+                  <div class="d-flex justify-content-between">
+                    <%= form.number_field :quantity, value: cart_item.quantity, class: "form-control"  %>
+                    <%= form.submit "Update", class: "btn btn-primary ms-2" %>
+                  </div>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to "", customer_cart_item_path(cart_item), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger bi bi-trash" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>

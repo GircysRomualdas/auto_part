@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   resources :part_types
   resources :car_parts
 
+  namespace :customer do
+    resources :carts
+    resources :cart_items
+  end
+
   namespace :seller do
     resources :car_parts
   end

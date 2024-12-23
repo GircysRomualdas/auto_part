@@ -2,9 +2,9 @@ class CarPart < ApplicationRecord
   belongs_to :part_type
   belongs_to :seller
 
-  has_many :stocks
-  has_many :order_items
-  has_many :cart_items
+  has_many :stocks, dependent: :destroy
+  has_many :order_items, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
 
   has_one_attached :image do |attachable|
     attachable.variant :small, resize_to_limit: [ 38, 38 ]

@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between mb-3">
       <h2 class="display-6">Car <%= @car_part.part_type.name %> Part</h2>
       <div>
-        <%= link_to "Add to Cart", home_path, class: "btn btn-success" %>
+        <%= button_to "Add to Cart", customer_cart_items_path(car_part_id: @car_part.id), method: :post, class: "btn btn-success" %>
       </div>
     </div>
     <div class="row">
