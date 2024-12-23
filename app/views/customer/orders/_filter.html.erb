@@ -1,0 +1,37 @@
+<%= search_form_for(q, url: path, method: :get) do |form| %>
+  <div class="row row-cols-1">
+    <!--    <div class="col my-3">
+      <div class="row mx-1 border rounded p-3">
+        <div class="col">
+          <%#= form.label :car_part_price_gteq, "Minimum Price", class: "form-label fw-bold"  %>-->
+    <%#= form.number_field :car_part_price_gteq, class: "form-control"  %>
+    <!--        </div>
+        <div class="col">
+          <%#= form.label :car_part_price_lteq, "Maximum Price", class: "form-label fw-bold"  %>-->
+    <%#= form.number_field :car_part_price_lteq, class: "form-control"  %>
+    <!--        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card p-3 mx-1">
+        <%#= form.label :car_part_part_type_id_eq, "Types", class: "form-label fw-bold"  %>-->
+    <!--        <div class="form-check-group row">-->
+    <%# part_types.each do |part_type| %>
+      <!--            <div class="col-2">
+              <div class="form-check">
+                <%#= form.check_box :car_part_part_type_id_in, { multiple: true, class: "form-check-input" }, part_type.id, nil %>-->
+      <%#= form.label "q[car_part_part_type_id_in][]", part_type.name, class: "form-check-label" %>
+      <!--              </div>
+            </div>
+          <%# end %>-->
+      <!--        </div>
+      </div>
+    </div>-->
+      <div class="col my-2">
+        <div class="d-flex justify-content-end">
+          <%= link_to "Clear Filter", path, class: "btn btn-outline-secondary me-2" %>
+          <%= form.submit "Filter", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>

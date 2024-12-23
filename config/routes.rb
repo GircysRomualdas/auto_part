@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :car_parts
 
   namespace :customer do
+    resources :orders
     resources :carts
     resources :cart_items
   end

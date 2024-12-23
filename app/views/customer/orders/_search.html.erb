@@ -1,18 +1,11 @@
 <%= search_form_for(q, url: path, method: :get) do |form| %>
   <div class="row">
-    <div class="col-md-2">
-      <h2 class="display-6">My Cart</h2>
-    </div>
     <div class="col-md">
-      <div class="d-flex justify-content-end fs-5">
-        <div class="ms-4 my-auto">
-          <%= link_to "Order", root_path, class: "btn btn-success" %>
-        </div>
-      </div>
+      <h2 class="display-6">My Orders</h2>
     </div>
     <div class="col-md-5">
       <div class="input-group">
-        <%= form.search_field :car_part_name_cont, class: "form-control", placeholder: "Search by car part" %>
+        <%= form.search_field :address_cont, class: "form-control", placeholder: "Search by address" %>
         <button class="btn btn-primary" type="submit">
           <i class="bi bi-search"></i>
         </button>
@@ -28,7 +21,7 @@
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#filtersAccordion">
         <div class="accordion-body bg-body-tertiary">
-          <%= render "customer/carts/filter", path: path, q: q, part_types: part_types %>
+          <%= render "customer/orders/filter", path: path, q: q %>
         </div>
       </div>
     </div>
