@@ -1,0 +1,40 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <%#= render "seller/order_items/search", path: seller_order_items_path, q: @q, part_types: @part_types %>
+    </div>
+    <div class="mt-2 card">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th>Car Part</th>
+            <th>Part Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.order.address %></td>
+              <td><%= order_item.car_part.name %></td>
+              <td><%= order_item.car_part.part_type.name %></td>
+              <td><%= order_item.quantity %></td>
+              <td><%= order_item.price %></td>
+              <td><%= order_item.total_price %></td>
+              <td><%= order_item.status %></td>
+              <td><%= order_item.order.created_at %></td>
+              <td class="p-0 text-end align-middle"><%= link_to "", seller_order_path(order_item), class: "btn btn-outline-secondary bi bi-eye" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>

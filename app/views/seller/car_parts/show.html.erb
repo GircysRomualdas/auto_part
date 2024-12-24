@@ -50,6 +50,34 @@
             </div>
           </div>
         </div>
+        <!-- -->
+        <div class="card shadow-sm p-4 mt-3">
+          <h5 class="text-center mb-3">Car Part Stock</h5>
+          <div class="text-muted px-3">
+            <% if @car_part.stock %>
+              <div class="d-flex justify-content-between border-bottom my-1">
+                <% if @car_part.stock.quantity > 0  %>
+                  <p class="fw-bold fs-5 text-success">In stock</p>
+                <% else %>
+                  <p class="fw-bold fs-5 text-danger">Out of stock</p>
+                <% end %>
+                <div class="d-flex justify-content-between">
+                  <%= form_with(model: @car_part.stock, url: seller_car_part_stock_path(@car_part, @car_part.stock), local: true, method: :patch) do |form| %>
+                    <div class="d-flex justify-content-between">
+                      <%= form.label :quantity, class: "form-label mx-2 my-auto fs-6 fw-bold" %>
+                      <%= form.number_field :quantity, value: @car_part.stock.quantity, class: "form-control" %>
+                      <%= form.submit "Update", class: "btn btn-primary ms-2" %>
+                    </div>
+                  <% end %>
+                  <%= button_to "", seller_car_part_stock_path(@car_part, @car_part.stock), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger bi bi-trash ms-2" %>
+                </div>
+              </div>
+            <% else %>
+              <%= button_to "Create Stock", seller_car_part_stocks_path(@car_part), method: :post, class: "btn btn-success" %>
+            <% end %>
+          </div>
+        </div>
+        <!-- -->
       </div>
     </div>
   </div>

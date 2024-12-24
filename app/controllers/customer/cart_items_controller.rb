@@ -5,13 +5,20 @@ class Customer::CartItemsController < CustomerController
     car_part = CarPart.find(params[:car_part_id])
 
     cart_item = @cart.cart_items.find_by(car_part: car_part)
-    if cart_item
-      cart_item.increment!(:quantity)
+    if car_part.stock && car_part.stock.quantity >= 1
+      if cart_item
+        if car_part.stock.quantity >= (cart_item.quantity + 1)
+          cart_item.increment!(:quantity)
+        else
+          redirect_back(fallback_location: root_path, alert: "Cart has max quantity from stock.")
+        end
+      else
+        @cart.cart_items.create(car_part: car_part, quantity: 1)
+        redirect_back(fallback_location: root_path, notice: "Item added to cart.")
+      end
     else
-      @cart.cart_items.create(car_part: car_part, quantity: 1)
+      redirect_back(fallback_location: root_path, alert: "Item out of stock.")
     end
-
-    redirect_back(fallback_location: root_path, notice: "Item added to cart.")
   end
 
   def update

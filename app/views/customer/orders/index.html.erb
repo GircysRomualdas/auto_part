@@ -9,7 +9,10 @@
           <tr>
             <th>Status</th>
             <th>Address</th>
+            <th>Car Parts</th>
+            <th>Total Price</th>
             <th>Created At</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -17,7 +20,10 @@
             <tr>
               <td><%= order.status %></td>
               <td><%= order.address %></td>
+              <td><%= order.order_items.count %></td>
+              <td><%= order.total_price %> €</td>
               <td><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td class="p-0 text-end align-middle"><%= link_to "", customer_order_path(order), class: "btn btn-outline-secondary bi bi-eye" %></td>
             </tr>
           <% end %>
         </tbody>

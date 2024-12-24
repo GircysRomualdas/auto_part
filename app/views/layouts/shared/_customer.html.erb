@@ -1,7 +1,7 @@
 <% if customer_signed_in? %>
   <div class="d-flex align-items-center">
     <div class="mx-3">
-      <%= link_to "", customer_cart_path(current_customer.cart), class: "bi bi-cart4 text-white fs-3" %>
+      <%= link_to "", customer_cart_path(current_customer.cart || current_customer.create_cart), class: "bi bi-cart4 text-white fs-3" %>
     </div>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-white" id="dropdownAdmin" data-bs-toggle="dropdown" aria-expanded="false">

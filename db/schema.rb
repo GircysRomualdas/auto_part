@@ -107,6 +107,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
     t.integer "order_id", null: false
     t.integer "car_part_id", null: false
     t.integer "quantity"
+    t.decimal "price"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_part_id"], name: "index_order_items_on_car_part_id"

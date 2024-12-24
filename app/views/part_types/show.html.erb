@@ -17,7 +17,14 @@
               <div class="card-body">
                 <div class="border-bottom">
                   <div class="py-1">
-                    <h5 class="card-title my-auto"><%= car_part.name %></h5>
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title my-auto"><%= car_part.name %></h5>
+                      <% if car_part.stock && car_part.stock.quantity >= 1 %>
+                        <p class="fw-bold fs-5 text-success">In stock</p>
+                      <% else %>
+                        <p class="fw-bold fs-5 text-danger">Out of stock</p>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
                 <div class="card-text">

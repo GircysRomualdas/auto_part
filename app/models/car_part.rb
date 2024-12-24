@@ -2,7 +2,7 @@ class CarPart < ApplicationRecord
   belongs_to :part_type
   belongs_to :seller
 
-  has_many :stocks, dependent: :destroy
+  has_one :stock, dependent: :destroy
   has_many :order_items, dependent: :destroy
   has_many :cart_items, dependent: :destroy
 

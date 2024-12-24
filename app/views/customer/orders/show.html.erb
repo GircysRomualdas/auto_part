@@ -1,2 +1,47 @@
-<h1>Customer::Orders#show</h1>
-<p>Find me in app/views/customer/orders/show.html.erb</p>
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <h2 class="display-6">My Order</h2>
+      <%= render "customer/orders/order_items/search", path: customer_order_path(@order), q: @q, part_types: @part_types %>
+    </div>
+    <div class="mt-2 card">
+      <div class="m-2">
+        <div class="d-flex justify-content-end my-auto fs-5">
+          <div class="card p-2">
+            <div class="mx-1">
+              <span class="fw-bold border-end border-3 pe-5">Total Order Price </span> <span class="ps-5"><%= @order.total_price %> €</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-hover border-top">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Car Part</th>
+            <th>Part Price</th>
+            <th>Part Type</th>
+            <th>Total Price</th>
+            <th class="col-2">Quantity</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td class="p-0 text-center align-middle">
+                <%= order_item.car_part.image.present? ? image_tag(order_item.car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
+              <td><%= link_to order_item.car_part.name, car_part_path(order_item.car_part), class: "text-decoration-none text-reset" %></td>
+              <td><%= order_item.price %> €</td>
+              <td><%= order_item.car_part.part_type.name %></td>
+              <td><%= order_item.total_price  %> €</td>
+              <td><%= order_item.quantity  %></td>
+              <td><%= order_item.status  %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>

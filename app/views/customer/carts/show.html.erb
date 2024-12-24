@@ -1,6 +1,15 @@
 <div class="card shadow-sm">
   <div class="card-body">
     <div class="my-2">
+      <div class="d-flex justify-content-between">
+        <h2 class="display-6">My Cart</h2>
+        <%= form_with(model: [:customer, @order], local: true, method: :post) do |form| %>
+          <div class="d-flex justify-content-between">
+            <%= form.text_field :address, value: @order.address, placeholder: "Order address", class: "form-control"  %>
+            <%= form.submit "Order", class: "btn btn-success ms-2" %>
+          </div>
+        <% end %>
+      </div>
       <%= render "customer/carts/search", path: customer_cart_path(current_customer.cart), q: @q, part_types: @part_types %>
     </div>
     <div class="mt-2 card">
@@ -30,20 +39,26 @@
             <tr>
               <td class="p-0 text-center align-middle">
                 <%= cart_item.car_part.image.present? ? image_tag(cart_item.car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
-              <td><%= cart_item.car_part.name %></td>
+              <td><%= link_to cart_item.car_part.name, car_part_path(cart_item.car_part), class: "text-decoration-none text-reset" %></td>
               <td><%= cart_item.car_part.price %> €</td>
               <td><%= cart_item.car_part.part_type.name %></td>
               <td><%= cart_item.total_price  %> €</td>
               <td>
-                <%= form_with(model: [:customer, cart_item], local: true, method: :patch) do |form| %>
-                  <div class="d-flex justify-content-between">
-                    <%= form.number_field :quantity, value: cart_item.quantity, class: "form-control"  %>
-                    <%= form.submit "Update", class: "btn btn-primary ms-2" %>
+                <% if cart_item.car_part.stock && cart_item.car_part.stock.quantity >= 1 %>
+                  <%= form_with(model: [:customer, cart_item], local: true, method: :patch) do |form| %>
+                    <div class="d-flex justify-content-between">
+                      <%= form.number_field :quantity, value: cart_item.quantity, class: "form-control"  %>
+                      <%= form.submit "Update", class: "btn btn-primary ms-2" %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <div class="text-center">
+                    <p class="fw-bold text-danger">Out of stock</p>
                   </div>
                 <% end %>
               </td>
               <td>
-                <%= button_to "", customer_cart_item_path(cart_item), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger bi bi-trash" %>
+                <%= button_to "", customer_cart_item_path(cart_item), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger bi bi-trash" %>
               </td>
             </tr>
           <% end %>

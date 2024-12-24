@@ -1,0 +1,2 @@
+module Seller::StocksHelper
+end

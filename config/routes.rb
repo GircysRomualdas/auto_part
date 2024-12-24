@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   end
 
   namespace :seller do
-    resources :car_parts
+    resources :orders
+    resources :car_parts do
+      resources :stocks
+    end
   end
 
   namespace :admin do
