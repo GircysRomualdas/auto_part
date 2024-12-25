@@ -2,6 +2,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
   has_one :cart, dependent: :destroy
+
   has_many :orders, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
@@ -9,6 +10,6 @@ class Customer < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    []
+    [ "cart", "orders" ]
   end
 end

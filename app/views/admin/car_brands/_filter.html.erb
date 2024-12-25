@@ -1,0 +1,26 @@
+<%= search_form_for(q, url: path, method: :get) do |form| %>
+  <div class="row">
+    <div class="col my-2">
+      <div class="card p-3">
+        <label class="form-label fw-bold">Created Range</label>
+        <div class="input-group">
+          <%= form.date_field :created_at_gteq, class: "form-control", placeholder: "From Date" %>
+          <%= form.date_field :created_at_lteq, class: "form-control", placeholder: "To Date" %>
+        </div>
+      </div>
+    </div>
+    <div class="col my-2">
+      <div class="card p-3">
+        <label class="form-label fw-bold">Updated Range</label>
+        <div class="input-group">
+          <%= form.date_field :updated_at_gteq, class: "form-control", placeholder: "From Date" %>
+          <%= form.date_field :updated_at_lteq, class: "form-control", placeholder: "To Date" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end mt-3">
+    <%= link_to "Clear Filter", admin_car_brands_path, class: "btn btn-outline-secondary me-2" %>
+    <%= form.submit "Filter", class: "btn btn-primary" %>
+  </div>
+<% end %>

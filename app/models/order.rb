@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :customer
+
   has_many :order_items, dependent: :destroy
 
   enum :status, { pending: "pending", partially_sent: "partially_sent", fully_sent: "fully_sent", canceled: "canceled" }

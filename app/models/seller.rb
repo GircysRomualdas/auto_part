@@ -1,6 +1,8 @@
 class Seller < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
+
   belongs_to :admin
+
   has_many :car_parts, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)

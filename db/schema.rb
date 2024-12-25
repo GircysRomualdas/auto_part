@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_25_002903) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -56,15 +56,33 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "car_parts", force: :cascade do |t|
+  create_table "car_brands", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.decimal "price"
-    t.integer "part_type_id", null: false
-    t.integer "seller_id", null: false
-    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "car_models", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "car_brand_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_brand_id"], name: "index_car_models_on_car_brand_id"
+  end
+
+  create_table "car_parts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.integer "part_type_id", null: false
+    t.integer "seller_id", null: false
+    t.integer "car_model_id", null: false
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_model_id"], name: "index_car_parts_on_car_model_id"
     t.index ["part_type_id"], name: "index_car_parts_on_part_type_id"
     t.index ["seller_id"], name: "index_car_parts_on_seller_id"
   end
@@ -72,7 +90,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id", null: false
     t.integer "car_part_id", null: false
-    t.integer "quantity"
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_part_id"], name: "index_cart_items_on_car_part_id"
@@ -106,9 +124,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "car_part_id", null: false
-    t.integer "quantity"
-    t.decimal "price"
-    t.string "status"
+    t.integer "quantity", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_part_id"], name: "index_order_items_on_car_part_id"
@@ -117,15 +135,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "status"
-    t.string "address"
+    t.string "status", null: false
+    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "part_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -152,7 +170,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
 
   create_table "stocks", force: :cascade do |t|
     t.integer "car_part_id", null: false
-    t.integer "quantity"
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_part_id"], name: "index_stocks_on_car_part_id"
@@ -160,6 +178,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_165656) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "car_models", "car_brands"
+  add_foreign_key "car_parts", "car_models"
   add_foreign_key "car_parts", "part_types"
   add_foreign_key "car_parts", "sellers"
   add_foreign_key "cart_items", "car_parts"

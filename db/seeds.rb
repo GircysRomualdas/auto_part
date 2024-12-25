@@ -1,5 +1,7 @@
 require 'open-uri'
 
+CarBrand.destroy_all
+CarModel.destroy_all
 Stock.destroy_all
 CarPart.destroy_all
 PartType.destroy_all
@@ -81,6 +83,152 @@ type_data.each do |data|
   part_types << part_type
   part_type.image.attach(io: URI.open(data[:url]), filename: "image.jpg")
 end
+
+# create car brand
+car_brand_data = [
+  { name: "Toyota", description: "A Japanese automaker known for reliability and fuel-efficient vehicles." },
+  { name: "Ford", description: "An American automaker recognized for its trucks and iconic Mustang sports car." },
+  { name: "BMW", description: "A German luxury car brand famous for its performance and engineering." },
+  { name: "Tesla", description: "An American brand revolutionizing the electric vehicle market with innovative technology." },
+  { name: "Honda", description: "A Japanese manufacturer popular for its affordable, durable, and fuel-efficient cars." },
+  { name: "Mercedes-Benz", description: "A German luxury brand known for premium vehicles and advanced technology." },
+  { name: "Chevrolet", description: "An American automaker offering a range of vehicles from compact cars to powerful trucks." },
+  { name: "Hyundai", description: "A South Korean brand providing affordable cars with modern features and strong warranties." },
+  { name: "Porsche", description: "A German manufacturer specializing in high-performance sports cars and SUVs." },
+  { name: "Nissan", description: "A Japanese car brand offering a variety of vehicles, including electric models like the Leaf." }
+]
+
+car_brands = []
+car_brand_data.each do |data|
+  car_brands << CarBrand.create!(data)
+end
+
+# create car model
+car_model_data = [
+  { name: "Camry", description: "A mid-size sedan known for its reliability and fuel efficiency.", car_brand: "Toyota" },
+  { name: "Corolla", description: "A compact sedan offering durability and great value.", car_brand: "Toyota" },
+  { name: "RAV4", description: "A popular compact SUV with excellent versatility.", car_brand: "Toyota" },
+  { name: "Highlander", description: "A mid-size SUV perfect for families.", car_brand: "Toyota" },
+  { name: "Tacoma", description: "A durable and capable mid-size truck.", car_brand: "Toyota" },
+  { name: "Prius", description: "A pioneering hybrid vehicle with exceptional fuel economy.", car_brand: "Toyota" },
+  { name: "Tundra", description: "A full-size truck built for heavy-duty tasks.", car_brand: "Toyota" },
+  { name: "Avalon", description: "A spacious and luxurious full-size sedan.", car_brand: "Toyota" },
+  { name: "Sequoia", description: "A large SUV designed for big families and adventures.", car_brand: "Toyota" },
+  { name: "Supra", description: "A sports car delivering thrilling performance.", car_brand: "Toyota" },
+
+  { name: "Mustang", description: "An iconic American sports car with powerful performance.", car_brand: "Ford" },
+  { name: "F-150", description: "A legendary full-size pickup truck with impressive capability.", car_brand: "Ford" },
+  { name: "Explorer", description: "A mid-size SUV offering versatility and comfort.", car_brand: "Ford" },
+  { name: "Escape", description: "A compact SUV combining practicality with modern features.", car_brand: "Ford" },
+  { name: "Bronco", description: "A rugged SUV designed for off-road adventures.", car_brand: "Ford" },
+  { name: "Edge", description: "A mid-size SUV offering sporty design and advanced features.", car_brand: "Ford" },
+  { name: "Fusion", description: "A mid-size sedan with efficient and stylish design.", car_brand: "Ford" },
+  { name: "Ranger", description: "A mid-size truck perfect for daily work and adventure.", car_brand: "Ford" },
+  { name: "Expedition", description: "A full-size SUV offering ample space for large families.", car_brand: "Ford" },
+  { name: "Maverick", description: "A compact truck with modern styling and utility.", car_brand: "Ford" },
+
+  { name: "3 Series", description: "A luxury sedan offering a balance of performance and comfort.", car_brand: "BMW" },
+  { name: "5 Series", description: "A mid-size luxury sedan with advanced technology.", car_brand: "BMW" },
+  { name: "7 Series", description: "A flagship luxury sedan with premium features.", car_brand: "BMW" },
+  { name: "X3", description: "A compact luxury SUV with sporty performance.", car_brand: "BMW" },
+  { name: "X5", description: "A mid-size luxury SUV offering space and versatility.", car_brand: "BMW" },
+  { name: "i4", description: "An all-electric luxury sedan with cutting-edge design.", car_brand: "BMW" },
+  { name: "Z4", description: "A stylish and sporty convertible.", car_brand: "BMW" },
+  { name: "M3", description: "A high-performance version of the 3 Series sedan.", car_brand: "BMW" },
+  { name: "X7", description: "A full-size luxury SUV with top-tier amenities.", car_brand: "BMW" },
+  { name: "iX", description: "An innovative all-electric luxury SUV.", car_brand: "BMW" },
+
+  { name: "Model S", description: "A premium electric sedan with cutting-edge technology.", car_brand: "Tesla" },
+  { name: "Model 3", description: "An affordable electric sedan with great range.", car_brand: "Tesla" },
+  { name: "Model X", description: "A luxury electric SUV with distinctive falcon-wing doors.", car_brand: "Tesla" },
+  { name: "Model Y", description: "A compact electric SUV designed for family use.", car_brand: "Tesla" },
+  { name: "Cybertruck", description: "A futuristic all-electric pickup truck.", car_brand: "Tesla" },
+  { name: "Roadster", description: "An all-electric sports car with incredible speed.", car_brand: "Tesla" },
+  { name: "Semi", description: "An electric semi-truck designed for freight hauling.", car_brand: "Tesla" },
+  { name: "Model 2", description: "An upcoming affordable compact electric vehicle.", car_brand: "Tesla" },
+  { name: "Solar Roof", description: "Innovative solar-powered roofing solution for homes and vehicles.", car_brand: "Tesla" },
+  { name: "Powerwall", description: "A home battery system for renewable energy storage.", car_brand: "Tesla" },
+
+  { name: "Civic", description: "A compact car offering practicality and efficiency.", car_brand: "Honda" },
+  { name: "Accord", description: "A mid-size sedan with a sleek and spacious design.", car_brand: "Honda" },
+  { name: "CR-V", description: "A compact SUV known for reliability and versatility.", car_brand: "Honda" },
+  { name: "Pilot", description: "A mid-size SUV with room for the whole family.", car_brand: "Honda" },
+  { name: "Odyssey", description: "A family-friendly minivan with advanced features.", car_brand: "Honda" },
+  { name: "HR-V", description: "A subcompact SUV that’s perfect for urban adventures.", car_brand: "Honda" },
+  { name: "Ridgeline", description: "A versatile and comfortable mid-size truck.", car_brand: "Honda" },
+  { name: "Fit", description: "A compact hatchback with surprising interior space.", car_brand: "Honda" },
+  { name: "Insight", description: "A hybrid sedan offering great fuel economy.", car_brand: "Honda" },
+  { name: "Passport", description: "A rugged mid-size SUV built for adventure.", car_brand: "Honda" },
+
+  { name: "C-Class", description: "A compact luxury sedan offering elegance and performance.", car_brand: "Mercedes-Benz" },
+  { name: "E-Class", description: "A luxury sedan with advanced features and refined design.", car_brand: "Mercedes-Benz" },
+  { name: "S-Class", description: "A flagship luxury sedan with top-tier amenities and technology.", car_brand: "Mercedes-Benz" },
+  { name: "GLC", description: "A compact luxury SUV with a premium interior.", car_brand: "Mercedes-Benz" },
+  { name: "GLE", description: "A mid-size SUV offering luxury and versatility.", car_brand: "Mercedes-Benz" },
+  { name: "GLA", description: "A subcompact luxury SUV perfect for urban driving.", car_brand: "Mercedes-Benz" },
+  { name: "GLS", description: "A full-size SUV providing ample space and luxury.", car_brand: "Mercedes-Benz" },
+  { name: "CLA", description: "A stylish and sporty compact sedan.", car_brand: "Mercedes-Benz" },
+  { name: "AMG GT", description: "A high-performance sports car with sleek styling.", car_brand: "Mercedes-Benz" },
+  { name: "EQC", description: "A fully electric SUV offering sustainable luxury.", car_brand: "Mercedes-Benz" },
+
+  { name: "Silverado", description: "A robust full-size pickup truck built for heavy-duty performance.", car_brand: "Chevrolet" },
+  { name: "Malibu", description: "A mid-size sedan with a comfortable ride and modern design.", car_brand: "Chevrolet" },
+  { name: "Equinox", description: "A compact SUV with advanced safety features.", car_brand: "Chevrolet" },
+  { name: "Traverse", description: "A mid-size SUV offering space for the whole family.", car_brand: "Chevrolet" },
+  { name: "Tahoe", description: "A large SUV perfect for towing and family trips.", car_brand: "Chevrolet" },
+  { name: "Suburban", description: "An extended full-size SUV with expansive cargo space.", car_brand: "Chevrolet" },
+  { name: "Blazer", description: "A sporty mid-size SUV with bold styling.", car_brand: "Chevrolet" },
+  { name: "Colorado", description: "A versatile mid-size truck for work and play.", car_brand: "Chevrolet" },
+  { name: "Bolt EV", description: "An affordable all-electric hatchback with a long range.", car_brand: "Chevrolet" },
+  { name: "Camaro", description: "A classic American muscle car delivering thrilling performance.", car_brand: "Chevrolet" },
+
+  { name: "Elantra", description: "A compact sedan offering great value and modern features.", car_brand: "Hyundai" },
+  { name: "Sonata", description: "A mid-size sedan with stylish design and advanced tech.", car_brand: "Hyundai" },
+  { name: "Santa Fe", description: "A mid-size SUV ideal for families and adventures.", car_brand: "Hyundai" },
+  { name: "Tucson", description: "A compact SUV with a sleek design and efficient performance.", car_brand: "Hyundai" },
+  { name: "Kona", description: "A subcompact SUV offering sporty handling.", car_brand: "Hyundai" },
+  { name: "Venue", description: "An affordable and stylish compact SUV.", car_brand: "Hyundai" },
+  { name: "Palisade", description: "A full-size SUV with a premium interior and three rows of seats.", car_brand: "Hyundai" },
+  { name: "Ioniq 5", description: "A futuristic all-electric crossover.", car_brand: "Hyundai" },
+  { name: "Veloster", description: "A sporty hatchback with a unique design.", car_brand: "Hyundai" },
+  { name: "Accent", description: "A compact sedan known for its affordability and efficiency.", car_brand: "Hyundai" },
+
+  { name: "911", description: "A high-performance sports car with a timeless design.", car_brand: "Porsche" },
+  { name: "Cayenne", description: "A luxury SUV combining performance and practicality.", car_brand: "Porsche" },
+  { name: "Macan", description: "A compact luxury SUV with sporty performance.", car_brand: "Porsche" },
+  { name: "Panamera", description: "A luxury sedan with dynamic driving capabilities.", car_brand: "Porsche" },
+  { name: "Taycan", description: "A fully electric luxury sedan with impressive speed.", car_brand: "Porsche" },
+  { name: "718 Cayman", description: "A compact sports car delivering thrilling handling.", car_brand: "Porsche" },
+  { name: "718 Boxster", description: "A convertible sports car perfect for open-road adventures.", car_brand: "Porsche" },
+  { name: "Turbo S", description: "A high-performance variant of Porsche's top models.", car_brand: "Porsche" },
+  { name: "911 GT3", description: "A track-focused version of the iconic 911.", car_brand: "Porsche" },
+  { name: "Mission E", description: "A concept electric sports car showcasing Porsche's future tech.", car_brand: "Porsche" },
+
+  { name: "Leaf", description: "An affordable electric vehicle with zero emissions.", car_brand: "Nissan" },
+  { name: "Altima", description: "A mid-size sedan offering comfort and advanced features.", car_brand: "Nissan" },
+  { name: "Rogue", description: "A compact SUV with a refined design and efficient performance.", car_brand: "Nissan" },
+  { name: "Sentra", description: "A compact sedan combining style and practicality.", car_brand: "Nissan" },
+  { name: "Versa", description: "An affordable subcompact sedan with great fuel economy.", car_brand: "Nissan" },
+  { name: "Pathfinder", description: "A mid-size SUV built for families and adventure.", car_brand: "Nissan" },
+  { name: "Murano", description: "A stylish and comfortable mid-size SUV.", car_brand: "Nissan" },
+  { name: "Frontier", description: "A reliable mid-size pickup truck.", car_brand: "Nissan" },
+  { name: "Titan", description: "A full-size truck designed for heavy-duty work.", car_brand: "Nissan" },
+  { name: "GT-R", description: "A high-performance sports car with advanced technology.", car_brand: "Nissan" }
+]
+
+car_models = []
+car_model_data.each do |data|
+  car_brand = CarBrand.find_by(name: data[:car_brand])
+  car_model = CarModel.create!(
+    name: data[:name],
+    description: data[:description],
+    car_brand: car_brand
+  )
+
+  car_models << car_model
+end
+
+
 
 # create car part
 car_parts_data = [
@@ -246,19 +394,20 @@ car_parts_data = [
 ]
 
 car_parts = []
-car_parts_data.each do |date|
-  part_type = PartType.find_by(name: date[:part_type_name])
+car_parts_data.each do |data|
+  part_type = PartType.find_by(name: data[:part_type_name])
   car_part = CarPart.create!(
-    name: date[:name],
-    description: date[:description],
-    price: date[:price],
+    name: data[:name],
+    description: data[:description],
+    price: data[:price],
     part_type: part_type,
     seller: sellers.sample,
-    active: date[:active]
+    active: data[:active],
+    car_model: car_models.sample
   )
 
   car_parts << car_part
-  car_part.image.attach(io: URI.open(date[:url]), filename: "image.jpg")
+  car_part.image.attach(io: URI.open(data[:url]), filename: "image.jpg")
 
   # create stock
   car_part.build_stock(quantity: rand(0..500))

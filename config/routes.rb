@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :car_models
+    resources :car_brands
     resources :sellers
     resources :customers
     resources :part_types

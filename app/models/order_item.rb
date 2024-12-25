@@ -19,8 +19,7 @@ class OrderItem < ApplicationRecord
   end
 
   private
-
-  def update_order_status
-    order.update_status_from_items
-  end
+    def update_order_status
+      order.update_status_from_items
+    end
 end

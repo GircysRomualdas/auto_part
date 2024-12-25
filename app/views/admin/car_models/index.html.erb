@@ -1,0 +1,30 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <%= render "admin/car_models/search", path: admin_car_models_path, q: @q %>
+    </div>
+    <div class="mt-2 card">
+      <table class="table table-hover border-top">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :name, "Name", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :created_at, "Created", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :updated_at, "Last Updated", class: "text-decoration-none text-black") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @car_models.each do |car_model| %>
+            <tr>
+              <td><%= car_model.name %></td>
+              <td><%= car_model.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= car_model.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td class="p-0 text-end align-middle"><%= link_to "", admin_car_model_path(car_model), class: "btn btn-outline-secondary bi bi-eye" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>

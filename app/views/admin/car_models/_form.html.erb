@@ -1,0 +1,22 @@
+<%= form_with(model: [:admin, car_model]) do |form| %>
+  <% if car_model.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% car_model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field my-1">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <div class="field my-1">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, rows: 8, class: "form-control" %>
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
