@@ -1,0 +1,68 @@
+<div>
+  <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
+  <div class="card shadow-sm p-4">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h2 class="display-6">Admin Profile </h2>
+      </div>
+      <div>
+        <%= link_to "Edit Profile", edit_admin_registration_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-8">
+        <div class="card shadow-sm p-4">
+          <h5 class="text-center mb-3">Admin Information</h5>
+          <div class="text-muted px-3">
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Email</span>
+              <span><%= @admin.email %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Created At</span>
+              <span><%= @admin.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Last Updated At</span>
+              <span><%= @admin.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row row-cols-1 g-4">
+          <div class="col">
+            <div class="card shadow-sm p-4">
+              <h5 class="text-center mb-3">Current Sign In Activity</h5>
+              <div class="text-muted px-3">
+                <div class="d-flex justify-content-between border-bottom my-1">
+                  <span class="fw-bold">Sign In At</span>
+                  <span><%= @admin.current_sign_in_at.present? ? @admin.current_sign_in_at.strftime("%Y-%m-%d %H:%M") : "N/A" %></span>
+                </div>
+                <div class="d-flex justify-content-between border-bottom my-1">
+                  <span class="fw-bold">IP Addres</span>
+                  <span><%= @admin.current_sign_in_ip.present? ? @admin.current_sign_in_ip : "N/A" %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm p-4">
+              <h5 class="text-center mb-3">Last Sign In Activity</h5>
+              <div class="text-muted px-3">
+                <div class="d-flex justify-content-between border-bottom my-1">
+                  <span class="fw-bold">Sign In At</span>
+                  <span><%= @admin.last_sign_in_at.present? ? @admin.last_sign_in_at.strftime("%Y-%m-%d %H:%M") : "N/A" %></span>
+                </div>
+                <div class="d-flex justify-content-between border-bottom my-1">
+                  <span class="fw-bold">IP Addres</span>
+                  <span><%= @admin.last_sign_in_ip.present? ? @admin.last_sign_in_ip : "N/A" %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,10 @@
 <div class="card shadow-sm">
   <div class="card-body">
     <div class="my-2">
-      <%#= render "seller/order_items/search", path: seller_order_items_path, q: @q, part_types: @part_types %>
+      <%= render "seller/orders/search", path: seller_orders_path, q: @q %>
     </div>
     <div class="mt-2 card">
-      <table class="table table-hover">
+      <table class="table table-hover border-top">
         <thead>
           <tr>
             <th>Address</th>
@@ -25,10 +25,12 @@
               <td><%= order_item.car_part.name %></td>
               <td><%= order_item.car_part.part_type.name %></td>
               <td><%= order_item.quantity %></td>
-              <td><%= order_item.price %></td>
-              <td><%= order_item.total_price %></td>
-              <td><%= order_item.status %></td>
-              <td><%= order_item.order.created_at %></td>
+              <td><%= order_item.price %> €</td>
+              <td><%= order_item.total_price %> €</td>
+              <td class="<%= get_order_item_status(order_item.status) %> fw-bold">
+                <%= order_item.status.humanize %>
+              </td>
+              <td><%= order_item.order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td class="p-0 text-end align-middle"><%= link_to "", seller_order_path(order_item), class: "btn btn-outline-secondary bi bi-eye" %></td>
             </tr>
           <% end %>

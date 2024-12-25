@@ -3,7 +3,7 @@ class Seller::OrdersController < SellerController
     car_parts = current_seller.car_parts
     order_items = OrderItem.where(car_part_id: car_parts.pluck(:id))
     @q = order_items.ransack(params[:q])
-    @pagy, @order_items = pagy(@q.result(distinct: true))
+    @pagy, @order_items = pagy(@q.result(distinct: true).includes(:order).includes(:car_part))
   end
 
   def show

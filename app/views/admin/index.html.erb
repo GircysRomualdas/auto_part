@@ -1,11 +1,57 @@
-<h1>Admin#index</h1>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
-<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Platea a nam penatibus consequat neque mus sagittis rhoncus. Et metus orci elementum ridiculus elit semper cras pharetra nulla. Primis bibendum adipiscing curae; mattis mollis nibh. Diam sit duis sed platea; mi imperdiet ultrices. Fringilla magnis fringilla, netus nec metus sed. Ultrices sociosqu finibus; facilisi arcu massa parturient porta etiam. Suscipit nec pellentesque litora ad sagittis penatibus bibendum.</p>
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <h2 class="display-6">Admin Dashboard</h2>
+    </div>
+    <div class="row row-cols-3 my-3">
+      <div class="col">
+        <div class="card shadow-sm fs-3 m-3">
+          <div class="card-body text-center">
+            <h5 class="card-title fs-6">Number of new customers this week</h5>
+            <p class="card-text"><%= @stats[:new_customers_this_week]%></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3 m-3">
+          <div class="card-body text-center">
+            <h5 class="card-title fs-6">Number of customers sign ins this week</h5>
+            <p class="card-text"><%= @stats[:customer_sign_ins_this_week]%></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3 m-3">
+          <div class="card-body text-center">
+            <h5 class="card-title fs-6">Total number of customers</h5>
+            <p class="card-text"><%= @stats[:total_customers]%></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3 m-3">
+          <div class="card-body text-center">
+            <h5 class="card-title fs-6">Number of new sellers this week</h5>
+            <p class="card-text"><%= @stats[:new_sellers_this_week]%></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3 m-3">
+          <div class="card-body text-center">
+            <h5 class="card-title fs-6">Number of sellers sign ins this week</h5>
+            <p class="card-text"><%= @stats[:seller_sign_ins_this_week]%></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3 m-3">
+          <div class="card-body text-center">
+            <h5 class="card-title fs-6">Total number of sellers</h5>
+            <p class="card-text"><%= @stats[:total_sellers]%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

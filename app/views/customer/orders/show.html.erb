@@ -1,7 +1,15 @@
 <div class="card shadow-sm">
   <div class="card-body">
     <div class="my-2">
-      <h2 class="display-6">My Order</h2>
+      <div class="d-flex justify-content-between">
+        <h2 class="display-6">My Order</h2>
+        <div class="d-flex">
+          <p class="me-3 fw-bold">Order Status</p>
+          <div class="<%= get_order_status(@order.status) %> fw-bold">
+            <%= @order.status.humanize %>
+          </div>
+        </div>
+      </div>
       <%= render "customer/orders/order_items/search", path: customer_order_path(@order), q: @q, part_types: @part_types %>
     </div>
     <div class="mt-2 card">
@@ -36,7 +44,9 @@
               <td><%= order_item.car_part.part_type.name %></td>
               <td><%= order_item.total_price  %> €</td>
               <td><%= order_item.quantity  %></td>
-              <td><%= order_item.status  %></td>
+              <td class="<%= get_order_item_status(order_item.status) %> fw-bold">
+                <%= order_item.status.humanize  %>
+              </td>
             </tr>
           <% end %>
         </tbody>

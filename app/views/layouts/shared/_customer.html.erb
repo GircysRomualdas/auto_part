@@ -9,7 +9,7 @@
         <strong><%= current_customer.email %></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownAdmin">
-        <li><%= link_to "Edit Profile", edit_customer_registration_path, class: "dropdown-item" %></li>
+        <li><%= link_to "Profile", customer_profile_path, class: "dropdown-item" %></li>
         <li><hr class="dropdown-divider"></li>
         <li><%= button_to "Sign out", destroy_customer_session_path, class: "dropdown-item", method: :delete %></li>
       </ul>

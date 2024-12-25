@@ -1,6 +1,4 @@
 class Seller < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
   belongs_to :admin
   has_many :car_parts, dependent: :destroy

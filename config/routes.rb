@@ -30,9 +30,14 @@ Rails.application.routes.draw do
   }
   devise_for :customers
 
-  get "home", to: "home#index"
-  get "admin", to: "admin#index"
-  get "seller", to: "seller#index"
+  get "customer/profile", to: "customer#show"
 
+  get "admin", to: "admin#index"
+  get "admin/profile", to: "admin#show"
+
+  get "seller", to: "seller#index"
+  get "seller/profile", to: "seller#show"
+
+  get "home", to: "home#index"
   root "home#index"
 end

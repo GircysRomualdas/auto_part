@@ -1,2 +1,109 @@
-<h1>Seller#index</h1>
-<p>Find me in app/views/seller/index.html.erb</p>
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <h2 class="display-6">Seller Dashboard</h2>
+    </div>
+    <div class="row my-3">
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Number of sales today</h5>
+            <p class="card-text"><%= @stats[:sales_today]%></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Total revenue today</h5>
+            <p class="card-text"><%= @stats[:revenue_today]%> €</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Average revenue today</h5>
+            <p class="card-text"><%= @stats[:avg_sale_today]%> €</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Total quantity sold today</h5>
+            <p class="card-text"><%= @stats[:total_quantity_sold_today]%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row my-3">
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Number of sales this week</h5>
+            <p class="card-text"><%= @stats[:sales_this_week]%></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Total revenue this week</h5>
+            <p class="card-text"><%= @stats[:revenue_this_week]%> €</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Average revenue this week</h5>
+            <p class="card-text"><%= @stats[:avg_sale_this_week]%> €</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm fs-3">
+          <div class="card-body text-center px-0">
+            <h5 class="card-title fs-6">Total quantity sold this week</h5>
+            <p class="card-text"><%= @stats[:total_quantity_sold_this_week]%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <div class="m-3">
+        <h3>News pending orders</h3>
+      </div>
+      <div class="mt-2 card">
+        <table class="table table-hover border-top">
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th>Car Part</th>
+              <th>Part Type</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_items.each do |order_item| %>
+              <tr>
+                <td><%= order_item.order.address %></td>
+                <td><%= order_item.car_part.name %></td>
+                <td><%= order_item.car_part.part_type.name %></td>
+                <td><%= order_item.quantity %></td>
+                <td><%= order_item.price %> €</td>
+                <td><%= order_item.total_price %> €</td>
+                <td class="p-0 text-end align-middle"><%= link_to "", seller_order_path(order_item), class: "btn btn-outline-secondary bi bi-eye" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

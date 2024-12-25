@@ -18,7 +18,9 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td><%= order.status %></td>
+              <td class="<%= get_order_status(order.status) %> fw-bold">
+                <%= order.status.humanize %>
+              </td>
               <td><%= order.address %></td>
               <td><%= order.order_items.count %></td>
               <td><%= order.total_price %> €</td>
