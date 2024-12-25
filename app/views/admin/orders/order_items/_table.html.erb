@@ -1,0 +1,46 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <h2 class="display-6">Order Items</h2>
+    </div>
+    <%= render "admin/orders/order_items/search", path: admin_order_path(@order), q: @q, part_types: @part_types %>
+  </div>
+  <div class="mt-2 card">
+    <table class="table table-hover border-top">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Car Part</th>
+          <th>Part Price</th>
+          <th>Part Type</th>
+          <th>Model</th>
+          <th>Brand</th>
+          <th>Seller</th>
+          <th>Total Price</th>
+          <th class="col-2">Quantity</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_items.each do |order_item| %>
+          <tr>
+            <td class="p-0 text-center align-middle">
+              <%= order_item.car_part.image.present? ? image_tag(order_item.car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
+            <td><%= link_to order_item.car_part.name, admin_car_part_path(order_item.car_part), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+            <td><%= order_item.price %> €</td>
+            <td><%= link_to order_item.car_part.part_type.name, admin_part_type_path(order_item.car_part.part_type), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+            <td><%= link_to order_item.car_part.car_model.name, admin_car_model_path(order_item.car_part.car_model), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+            <td><%= link_to order_item.car_part.car_model.car_brand.name, admin_car_brand_path(order_item.car_part.car_model.car_brand), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+            <td><%= link_to order_item.car_part.seller.email, admin_seller_path(order_item.car_part.seller), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+            <td><%= order_item.total_price  %> €</td>
+            <td><%= order_item.quantity  %></td>
+            <td class="<%= get_order_item_status(order_item.status) %> fw-bold">
+              <%= order_item.status.humanize  %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= render "layouts/shared/pagination", pagy: @pagy %>
+  </div>
+</div>

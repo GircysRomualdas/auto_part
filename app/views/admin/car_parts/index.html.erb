@@ -12,8 +12,9 @@
             <th><%= sort_link(@q, :price, "Price", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :active, "Active", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :part_type_name, "Type", class: "text-decoration-none text-black") %></th>
-            <th><%= sort_link(@q, :seller_email, "Seller", class: "text-decoration-none text-black") %></th>
-            <th>Stock</th>
+            <th><%= sort_link(@q, :car_model_name, "Model", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :car_model_car_brand_name, "Brand", class: "text-decoration-none text-black") %></th>
+            <th><%= sort_link(@q, :stock_quantity, "Stock", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :created_at, "Created", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :updated_at, "Last Updated", class: "text-decoration-none text-black") %></th>
             <th></th>
@@ -30,7 +31,8 @@
                 <%= car_part.active ? 'Active' : 'Inactive' %>
               </td>
               <td><%= car_part.part_type.name %></td>
-              <td><%= car_part.seller.email %></td>
+              <td><%= car_part.car_model.name %></td>
+              <td><%= car_part.car_model.car_brand.name %></td>
               <td>
                 <% if car_part.stock && car_part.stock.quantity > 0 %>
                   <span class="text-success fw-bold">In stock</span>
@@ -38,8 +40,8 @@
                   <span class="text-danger fw-bold">Out of stock</span>
                 <% end %>
               </td>
-              <td><%= car_part.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-              <td><%= car_part.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= car_part.created_at.strftime("%Y-%m-%d") %></td>
+              <td><%= car_part.updated_at.strftime("%Y-%m-%d") %></td>
               <td class="p-0 text-end align-middle"><%= link_to "", admin_car_part_path(car_part), class: "btn btn-outline-secondary bi bi-eye" %></td>
             </tr>
           <% end %>

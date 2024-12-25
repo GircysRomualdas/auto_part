@@ -10,6 +10,8 @@
             <th>Address</th>
             <th>Car Part</th>
             <th>Part Type</th>
+            <th>Model</th>
+            <th>Brand</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Total Price</th>
@@ -24,13 +26,15 @@
               <td><%= order_item.order.address %></td>
               <td><%= order_item.car_part.name %></td>
               <td><%= order_item.car_part.part_type.name %></td>
+              <td><%= order_item.car_part.car_model.name %></td>
+              <td><%= order_item.car_part.car_model.car_brand.name %></td>
               <td><%= order_item.quantity %></td>
               <td><%= order_item.price %> €</td>
               <td><%= order_item.total_price %> €</td>
               <td class="<%= get_order_item_status(order_item.status) %> fw-bold">
                 <%= order_item.status.humanize %>
               </td>
-              <td><%= order_item.order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= order_item.order.created_at.strftime("%Y-%m-%d") %></td>
               <td class="p-0 text-end align-middle"><%= link_to "", seller_order_path(order_item), class: "btn btn-outline-secondary bi bi-eye" %></td>
             </tr>
           <% end %>

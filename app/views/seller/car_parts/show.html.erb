@@ -37,6 +37,14 @@
               <span><%= @car_part.part_type.name %></span>
             </div>
             <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Brand</span>
+              <span><%= @car_part.car_model.car_brand.name %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Model</span>
+              <span><%= @car_part.car_model.name %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
               <span class="fw-bold">Created At</span>
               <span><%= @car_part.created_at.strftime("%Y-%m-%d %H:%M") %></span>
             </div>

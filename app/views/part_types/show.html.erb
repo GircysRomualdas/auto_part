@@ -28,11 +28,19 @@
                   </div>
                 </div>
                 <div class="card-text">
-                  <div>
-                    <p><%= car_part.price %> €</p>
-                  </div>
-                  <div>
-                    <p><%= car_part.part_type.name %></p>
+                  <div class="row">
+                    <div class="col">
+                      <p><%= car_part.price %> €</p>
+                    </div>
+                    <div class="col">
+                      <p><%= car_part.part_type.name %></p>
+                    </div>
+                    <div class="col">
+                      <p><%= car_part.car_model.name %></p>
+                    </div>
+                    <div class="col">
+                      <p><%= car_part.car_model.car_brand.name %></p>
+                    </div>
                   </div>
                 </div>
               </div>

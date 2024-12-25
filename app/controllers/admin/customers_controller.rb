@@ -7,6 +7,9 @@ class Admin::CustomersController < AdminController
   end
 
   def show
+    orders = @customer.orders
+    @q = orders.ransack(params[:q])
+    @pagy, @orders = pagy(@q.result(distinct: true))
   end
 
   def destroy

@@ -1,45 +1,55 @@
 <div>
-  <div class="my-2">
-    <%= render "car_parts/search", path: car_parts_path, q: @q, part_types: @part_types %>
-  </div>
-  <% @car_parts.each do |car_part| %>
-    <div class="card shadow-sm my-3">
-      <%= link_to car_part_path(car_part), class: "text-decoration-none text-dark" do %>
-        <div class="row g-0" style="height: 200px;">
-          <div class="col-md-3">
-            <div class="d-flex align-items-center justify-content-center h-100">
-              <%= car_part.image.present? ? image_tag(car_part.image.variant(:medium), class: "img-fluid rounded-start h-100 w-auto") : image_tag("https://via.placeholder.com/200", class: "img-fluid rounded-start") %>
+  <div>
+    <div class="my-2">
+      <%= render "car_parts/search", path: car_parts_path, q: @q, part_types: @part_types %>
+    </div>
+    <% @car_parts.each do |car_part| %>
+      <div class="card shadow-sm my-3">
+        <%= link_to car_part_path(car_part), class: "text-decoration-none text-dark" do %>
+          <div class="row g-0" style="height: 200px;">
+            <div class="col-md-3">
+              <div class="d-flex align-items-center justify-content-center h-100">
+                <%= car_part.image.present? ? image_tag(car_part.image.variant(:medium), class: "img-fluid rounded-start h-100 w-auto") : image_tag("https://via.placeholder.com/200", class: "img-fluid rounded-start") %>
+              </div>
             </div>
-          </div>
-          <div class="col-md">
-            <div class="card-body">
-              <div class="border-bottom">
-                <div class="py-1">
-                  <div class="d-flex justify-content-between">
-                    <h5 class="card-title my-auto"><%= car_part.name %></h5>
-                    <% if car_part.stock && car_part.stock.quantity >= 1 %>
-                      <p class="fw-bold fs-5 text-success">In stock</p>
-                    <% else %>
-                      <p class="fw-bold fs-5 text-danger">Out of stock</p>
-                    <% end %>
+            <div class="col-md">
+              <div class="card-body">
+                <div class="border-bottom">
+                  <div class="py-1">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title my-auto"><%= car_part.name %></h5>
+                      <% if car_part.stock && car_part.stock.quantity >= 1 %>
+                        <p class="fw-bold fs-5 text-success">In stock</p>
+                      <% else %>
+                        <p class="fw-bold fs-5 text-danger">Out of stock</p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text">
+                  <div class="row">
+                    <div class="col">
+                      <p><%= car_part.price %> €</p>
+                    </div>
+                    <div class="col">
+                      <p><%= car_part.part_type.name %></p>
+                    </div>
+                    <div class="col">
+                      <p><%= car_part.car_model.name %></p>
+                    </div>
+                    <div class="col">
+                      <p><%= car_part.car_model.car_brand.name %></p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="card-text">
-                <div>
-                  <p><%= car_part.price %> €</p>
-                </div>
-                <div>
-                  <p><%= car_part.part_type.name %></p>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="mt-4">
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
     </div>
-  <% end %>
-  <div class="mt-4">
-    <%= render "layouts/shared/pagination", pagy: @pagy %>
   </div>
 </div>

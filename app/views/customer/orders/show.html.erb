@@ -29,6 +29,8 @@
             <th>Car Part</th>
             <th>Part Price</th>
             <th>Part Type</th>
+            <th>Model</th>
+            <th>Brand</th>
             <th>Total Price</th>
             <th class="col-2">Quantity</th>
             <th>Status</th>
@@ -42,6 +44,8 @@
               <td><%= link_to order_item.car_part.name, car_part_path(order_item.car_part), class: "text-decoration-none text-reset" %></td>
               <td><%= order_item.price %> €</td>
               <td><%= order_item.car_part.part_type.name %></td>
+              <td><%= order_item.car_part.car_model.name %></td>
+              <td><%= order_item.car_part.car_model.car_brand.name %></td>
               <td><%= order_item.total_price  %> €</td>
               <td><%= order_item.quantity  %></td>
               <td class="<%= get_order_item_status(order_item.status) %> fw-bold">

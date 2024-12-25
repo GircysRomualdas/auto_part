@@ -29,6 +29,8 @@
             <th><%= sort_link(@q, :car_part_name, "Car Part", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :car_part_price, "Part Price", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :car_part_part_type_name, "Part Type", class: "text-decoration-none text-black") %></th>
+            <th>Model</th>
+            <th>Brand</th>
             <th>Total Price</th>
             <th class="col-2"><%= sort_link(@q, :quantity, "Quantity", class: "text-decoration-none text-black") %></th>
             <th></th>
@@ -42,6 +44,8 @@
               <td><%= link_to cart_item.car_part.name, car_part_path(cart_item.car_part), class: "text-decoration-none text-reset" %></td>
               <td><%= cart_item.car_part.price %> €</td>
               <td><%= cart_item.car_part.part_type.name %></td>
+              <td><%= cart_item.car_part.car_model.name %></td>
+              <td><%= cart_item.car_part.car_model.car_brand.name %></td>
               <td><%= cart_item.total_price  %> €</td>
               <td>
                 <% if cart_item.car_part.stock && cart_item.car_part.stock.quantity >= 1 %>

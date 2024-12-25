@@ -1,0 +1,43 @@
+<div>
+  <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
+  <div class="card shadow-sm mb-4">
+    <h1 class="display-6 p-3">Order Details</h1>
+    <div class="card-body">
+      <div class="card shadow-sm p-3">
+        <h5 class="text-center mb-3">Order Information</h5>
+        <div class="text-muted px-3">
+          <div class="d-flex justify-content-between border-bottom my-1">
+            <span class="fw-bold">Status</span>
+            <span class="<%= get_order_status(@order.status) %> fw-bold"><%= @order.status.humanize %></span>
+          </div>
+          <div class="d-flex justify-content-between border-bottom my-1">
+            <span class="fw-bold">Customer</span>
+            <span><%= link_to @order.customer.email, admin_customer_path(@order.customer), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></span>
+          </div>
+          <div class="d-flex justify-content-between border-bottom my-1">
+            <span class="fw-bold">Address</span>
+            <span><%= @order.address %></span>
+          </div>
+          <div class="d-flex justify-content-between border-bottom my-1">
+            <span class="fw-bold">Car Parts</span>
+            <span><%= @order.order_items.count %></span>
+          </div>
+          <div class="d-flex justify-content-between border-bottom my-1">
+            <span class="fw-bold">Car Parts</span>
+            <span><%= @order.total_price %> €</span>
+          </div>
+          <div class="d-flex justify-content-between border-bottom my-1">
+            <span class="fw-bold">Created At</span>
+            <span><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+          </div>
+          <div class="d-flex justify-content-between border-bottom my-1">
+            <span class="fw-bold">Updated At</span>
+            <span><%= @order.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render "admin/orders/order_items/table" %>
+</div>
+</div>

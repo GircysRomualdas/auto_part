@@ -13,9 +13,15 @@ Rails.application.routes.draw do
     resources :car_parts do
       resources :stocks
     end
+    resources :car_models, only: [] do
+      collection do
+        get :by_brand
+      end
+    end
   end
 
   namespace :admin do
+    resources :orders
     resources :car_models
     resources :car_brands
     resources :sellers

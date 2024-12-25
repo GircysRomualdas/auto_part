@@ -38,6 +38,14 @@
               <span><%= link_to @car_part.part_type.name, admin_part_type_path(@car_part.part_type), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></span>
             </div>
             <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Model</span>
+              <span><%= link_to @car_part.car_model.name, admin_car_model_path(@car_part.car_model), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
+              <span class="fw-bold">Brand</span>
+              <span><%= link_to @car_part.car_model.car_brand.name, admin_car_brand_path(@car_part.car_model.car_brand), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom my-1">
               <span class="fw-bold">Created At</span>
               <span><%= @car_part.created_at.strftime("%Y-%m-%d %H:%M") %></span>
             </div>

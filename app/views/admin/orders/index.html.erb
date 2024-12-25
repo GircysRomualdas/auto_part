@@ -1,0 +1,38 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="my-2">
+      <%= render "admin/orders/search", path: customer_orders_path, q: @q %>
+    </div>
+    <div class="mt-2 card">
+      <table class="table table-hover border-top">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Customer</th>
+            <th>Address</th>
+            <th>Car Parts</th>
+            <th>Total Price</th>
+            <th>Created At</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td class="<%= get_order_status(order.status) %> fw-bold">
+                <%= order.status.humanize %>
+              </td>
+              <td><%= order.customer.email %></td>
+              <td><%= order.address %></td>
+              <td><%= order.order_items.count %></td>
+              <td><%= order.total_price %> €</td>
+              <td><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td class="p-0 text-end align-middle"><%= link_to "", admin_order_path(order), class: "btn btn-outline-secondary bi bi-eye" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render "layouts/shared/pagination", pagy: @pagy %>
+    </div>
+  </div>
+</div>

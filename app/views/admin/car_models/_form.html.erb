@@ -16,7 +16,11 @@
     <%= form.label :description, class: "form-label" %>
     <%= form.text_area :description, rows: 8, class: "form-control" %>
   </div>
-  <div class="d-flex justify-content-end">
+  <div class="field my-1">
+    <%= form.label :part_type_id, "Type", class: "form-label" %>
+    <%= form.collection_select(:part_type_id, @car_brands, :id, :name, {}, { class: "form-select" }) %>
+  </div>
+  <div class="d-flex justify-content-end mt-4">
     <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -29,6 +29,20 @@
     <%= form.collection_select(:part_type_id, @part_types, :id, :name, {}, { class: "form-select" }) %>
   </div>
   <div class="field my-1">
+    <%= form.label :car_brand_id, "Car Brand", class: "form-label" %>
+    <%= form.select :car_brand_id, 
+                  @car_brands.pluck(:name, :id), 
+                  { prompt: "Select Car Brand", selected: car_part.car_model&.car_brand_id }, 
+                  { class: "form-select", id: "car-brand-select" } %>
+  </div>
+  <div class="field my-1">
+    <%= form.label :car_model_id, "Car Model", class: "form-label" %>
+    <%= form.select :car_model_id, 
+                  @car_models.map { |model| [model.name, model.id] }, 
+                  { prompt: "Select Car Model", selected: car_part.car_model&.id }, 
+                  { class: "form-select", id: "car-model-select" } %>
+  </div>
+  <div class="field my-1">
     <div class="row">
       <div class="col-md-6 d-flex justify-content-center align-items-center" style="width: 200px; height: 200px;">
         <div class="d-flex justify-content-center align-items-center w-100 h-100">
@@ -46,41 +60,63 @@
   </div>
 <% end %>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const imageInput = document.getElementById("image-input");
-    const imagePreview = document.getElementById("image-preview");
+  const carBrandSelect = document.getElementById("car-brand-select");
+  const carModelSelect = document.getElementById("car-model-select");
 
-    imageInput.addEventListener("change", function(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = new Image();
-          img.onload = function() {
-            const maxWidth = 200;
-            const maxHeight = 200;
+  carBrandSelect.addEventListener("change", function () {
+    const brandId = this.value;
+    carModelSelect.innerHTML = "<option>Select Car Model</option>";
 
-            let width = img.width;
-            let height = img.height;
+    if (brandId) {
+      fetch(`/seller/car_models/by_brand?car_brand_id=${brandId}`)
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(model => {
+            const option = document.createElement("option");
+            option.value = model.id;
+            option.textContent = model.name;
+            carModelSelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error("Error fetching car models:", error));
+    }
+  });
 
-            if (width > maxWidth || height > maxHeight) {
-              if (width > height) {
-                height *= maxWidth / width;
-                width = maxWidth;
-              } else {
-                width *= maxHeight / height;
-                height = maxHeight;
-              }
+
+
+  const imageInput = document.getElementById("image-input");
+  const imagePreview = document.getElementById("image-preview");
+
+  imageInput.addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const maxWidth = 200;
+          const maxHeight = 200;
+
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth || height > maxHeight) {
+            if (width > height) {
+              height *= maxWidth / width;
+              width = maxWidth;
+            } else {
+              width *= maxHeight / height;
+              height = maxHeight;
             }
+          }
 
-            imagePreview.src = e.target.result;
-            imagePreview.style.width = `${width}px`;
-            imagePreview.style.height = `${height}px`;
-          };
-          img.src = e.target.result;
+          imagePreview.src = e.target.result;
+          imagePreview.style.width = `${width}px`;
+          imagePreview.style.height = `${height}px`;
         };
-        reader.readAsDataURL(file);
-      }
-    });
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   });
 </script>

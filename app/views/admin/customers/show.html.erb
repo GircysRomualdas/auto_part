@@ -65,4 +65,7 @@
       </div>
     </div>
   </div>
+  <div class="mt-4">
+    <%= render "admin/customers/orders/table", path: admin_customer_path(@customer), q: @q, orders: @orders, pagy: @pagy %>
+  </div>
 </div>

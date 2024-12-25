@@ -14,9 +14,13 @@ class Seller::CarPartsController < SellerController
 
   def new
     @car_part = CarPart.new
+    @car_brands = CarBrand.all
+    @car_models = []
   end
 
   def edit
+    @car_brands = CarBrand.all
+    @car_models = CarModel.where(car_brand_id: @car_part.car_model.car_brand.id)
   end
 
   def create
@@ -59,6 +63,6 @@ class Seller::CarPartsController < SellerController
     end
 
     def car_part_params
-      params.require(:car_part).permit(:name, :description, :price, :part_type_id, :active, :image)
+      params.require(:car_part).permit(:name, :description, :price, :part_type_id, :active, :image, :car_model_id)
     end
 end

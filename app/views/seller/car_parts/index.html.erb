@@ -12,6 +12,8 @@
             <th><%= sort_link(@q, :price, "Price", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :active, "Active", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :part_type_name, "Type", class: "text-decoration-none text-black") %></th>
+            <th>Brand</th>
+            <th>Model</th>
             <th><%= sort_link(@q, :created_at, "Created", class: "text-decoration-none text-black") %></th>
             <th><%= sort_link(@q, :updated_at, "Last Updated", class: "text-decoration-none text-black") %></th>
             <th>Stock</th>
@@ -29,8 +31,10 @@
                 <%= car_part.active ? 'Active' : 'Inactive' %>
               </td>
               <td><%= car_part.part_type.name %></td>
-              <td><%= car_part.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-              <td><%= car_part.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= car_part.car_model.car_brand.name %></td>
+              <td><%= car_part.car_model.name %></td>
+              <td><%= car_part.created_at.strftime("%Y-%m-%d") %></td>
+              <td><%= car_part.updated_at.strftime("%Y-%m-%d") %></td>
               <td>
                 <% if car_part.stock && car_part.stock.quantity > 0 %>
                   <span class="text-success fw-bold">In stock</span>

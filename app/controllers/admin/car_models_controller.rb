@@ -11,9 +11,11 @@ class Admin::CarModelsController < AdminController
 
   def new
     @car_model = CarModel.new
+    @car_brands = CarBrand.all
   end
 
   def edit
+    @car_brands = CarBrand.all
   end
 
   def create
