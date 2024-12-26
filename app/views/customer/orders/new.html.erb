@@ -1,0 +1,6 @@
+<div class="card shadow-sm m-4 p-4">
+  <div data-controller="stripe-checkout" 
+     data-stripe-checkout-publishable-key-value="<%= Rails.application.credentials[:stripe][:public_key] %>"
+     data-stripe-checkout-url-value="<%= customer_orders_path %>">
+  </div>
+</div>

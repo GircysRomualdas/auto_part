@@ -1,12 +1,21 @@
+<!--<div class="my-2">-->
+<%# if notice %>
+<!--    <div class="alert alert-success">
+      <p class="notice"><%#= notice %></p>
+    </div>
+  <%# end %>-->
+<%# if alert %>
+<!--    <div class="alert alert-danger">
+      <p class="alert"><%#= alert %></p>
+    </div>
+  <%# end %>-->
+<!--</div>-->
 <div class="my-2">
-  <% if notice %>
-    <div class="alert alert-success">
-      <p class="notice"><%= notice %></p>
-    </div>
-  <% end %>
-  <% if alert %>
-    <div class="alert alert-danger">
-      <p class="alert"><%= alert %></p>
-    </div>
+  <% flash.each do |key, messages| %>
+    <% Array(messages).each do |message| %>
+      <div class="alert <%= key.to_s == 'notice' ? 'alert-success' : 'alert-danger' %>">
+        <p class="<%= key %>"><%= message %></p>
+      </div>
+    <% end %>
   <% end %>
 </div>

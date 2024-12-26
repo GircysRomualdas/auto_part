@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :car_parts
 
   namespace :customer do
-    resources :orders
+    resources :orders do
+      get :success, on: :collection
+    end
     resources :carts
     resources :cart_items
   end

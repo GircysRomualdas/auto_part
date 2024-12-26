@@ -9,6 +9,7 @@
             <%= form.submit "Order", class: "btn btn-success ms-2" %>
           </div>
         <% end %>
+        <%= link_to "Purchase", new_customer_order_path, class: "btn btn-success" %>
       </div>
       <%= render "customer/carts/search", path: customer_cart_path(current_customer.cart), q: @q, part_types: @part_types %>
     </div>

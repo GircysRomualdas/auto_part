@@ -16,26 +16,86 @@ class Customer::OrdersController < CustomerController
     @part_types = PartType.all
   end
 
+  def new
+    if current_customer.cart.cart_items.empty?
+      redirect_to customer_cart_path(current_customer.cart || current_customer.create_cart), alert: "Your cart is empty. Please add items before placing an order."
+      nil
+    end
+  end
+
   def create
     if current_customer.cart.cart_items.empty?
-      redirect_to customer_carts_path, alert: "Your cart is empty. Please add items before placing an order."
-      return
+      redirect_to customer_cart_path(current_customer.cart || current_customer.create_cart), alert: "Your cart is empty. Please add items before placing an order."
+      nil
     end
 
-    customer = current_customer
-
-    shipping_address = params[:order][:address]
-    if shipping_address.present?
-      redirect_to customer_carts_path, alert: "Your cart is empty. Please add items before placing an order."
-      return
+    line_items = []
+    current_customer.cart.cart_items.each do |item|
+      line_items << {
+        quantity: item.quantity,
+        price_data: {
+          currency: "eur",
+          product_data: {
+            name: item.car_part.name
+          },
+          unit_amount: (item.total_price * 100).to_i
+        }
+      }
     end
 
-    result = OrderService.create_order_from_cart(customer, shipping_address)
+    session = Stripe::Checkout::Session.create({
+      ui_mode: "embedded",
+      shipping_address_collection: { allowed_countries: [ "LT" ] },
+      phone_number_collection: { enabled: true },
+      line_items: line_items,
+      mode: "payment",
+      return_url: "#{success_customer_orders_url}?session_id={CHECKOUT_SESSION_ID}"
+    })
+
+    render json: { clientSecret: session.client_secret }
+  end
+
+  def success
+    flash[:notice] ||= []
+
+    flash[:notice] << "Order payment successfull"
+
+    #-------------------------------------------------
+    # Retrieve the session ID from the query parameters
+    session_id = params[:session_id]  # Assuming session_id is passed in the query string
+
+    # Retrieve the session from Stripe using the session ID
+    session = Stripe::Checkout::Session.retrieve(session_id)
+
+    puts "--------------------------------------------"
+    puts session
+    puts "--------------------------------------------"
+
+    # Extract the shipping address from the session
+    shipping_address = session.shipping_details.address
+
+    # You can now access various parts of the shipping address
+    street = "#{shipping_address.line1} #{shipping_address.line2}"
+    city = shipping_address.city
+    postal_code = shipping_address.postal_code
+    country = shipping_address.country
+    state = shipping_address.state
+
+    # Optionally, you can print the shipping address or store it in your order
+    puts "------------------------------------------"
+    puts "Shipping Address: #{street}, #{city}, #{postal_code}, #{country} , #{state}"
+    puts "------------------------------------------"
+    #-------------------------------------------------
+
+    shipping_address = "1234 Elm Street Springfield"
+    result = OrderService.create_order_from_cart(current_customer, shipping_address)
 
     if result[:success]
-      redirect_to customer_orders_path, notice: "Order placed successfully!"
+      flash[:notice] << "Order placed successfully!"
+
+      redirect_to customer_orders_path
     else
-      redirect_to customer_carts_path, status: :unprocessable_entity, alert: result[:error]
+      redirect_to customer_cart_path(current_customer.cart || current_customer.create_cart), status: :unprocessable_entity, alert: result[:error]
     end
   end
 end
