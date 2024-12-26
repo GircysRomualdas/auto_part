@@ -57,38 +57,12 @@ class Customer::OrdersController < CustomerController
 
   def success
     flash[:notice] ||= []
-
     flash[:notice] << "Order payment successfull"
 
-    #-------------------------------------------------
-    # Retrieve the session ID from the query parameters
-    session_id = params[:session_id]  # Assuming session_id is passed in the query string
+    session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    customer_details = session.customer_details
 
-    # Retrieve the session from Stripe using the session ID
-    session = Stripe::Checkout::Session.retrieve(session_id)
-
-    puts "--------------------------------------------"
-    puts session
-    puts "--------------------------------------------"
-
-    # Extract the shipping address from the session
-    shipping_address = session.shipping_details.address
-
-    # You can now access various parts of the shipping address
-    street = "#{shipping_address.line1} #{shipping_address.line2}"
-    city = shipping_address.city
-    postal_code = shipping_address.postal_code
-    country = shipping_address.country
-    state = shipping_address.state
-
-    # Optionally, you can print the shipping address or store it in your order
-    puts "------------------------------------------"
-    puts "Shipping Address: #{street}, #{city}, #{postal_code}, #{country} , #{state}"
-    puts "------------------------------------------"
-    #-------------------------------------------------
-
-    shipping_address = "1234 Elm Street Springfield"
-    result = OrderService.create_order_from_cart(current_customer, shipping_address)
+    result = OrderService.create_order_from_cart(current_customer, customer_details)
 
     if result[:success]
       flash[:notice] << "Order placed successfully!"

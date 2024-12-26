@@ -1,5 +1,5 @@
 class OrderService
-  def self.create_order_from_cart(customer, shipping_address)
+  def self.create_order_from_cart(customer, customer_details)
     cart = customer.cart
     return { success: false, error: "Cart is empty" } if cart.cart_items.empty?
 
@@ -13,8 +13,20 @@ class OrderService
 
       order = Order.create!(
         customer: customer,
-        address: shipping_address,
         status: "pending"
+      )
+
+      ShippingDetail.create!(
+        order: order,
+        recipient_name: customer_details.name,
+        recipient_email: customer_details.email,
+        address_line_1: customer_details.address.line1,
+        address_line_2: customer_details.address.line2,
+        city: customer_details.address.city,
+        state: customer_details.address.state,
+        postal_code: customer_details.address.postal_code,
+        country: customer_details.address.country,
+        phone_number: customer_details.phone
       )
 
       cart.cart_items.each do |cart_item|

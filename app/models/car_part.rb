@@ -17,7 +17,7 @@ class CarPart < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "name", "price", "active", "part_type_id", "seller_id", "created_at", "updated_at" ]
+    [ "name", "description", "price", "active", "part_type_id", "seller_id", "car_model_id", "created_at", "updated_at" ]
   end
 
   def self.ransackable_associations(auth_object = nil)

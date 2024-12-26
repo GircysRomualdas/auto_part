@@ -7,6 +7,7 @@
       <table class="table table-hover border-top">
         <thead>
           <tr>
+            <th>City</th>
             <th>Address</th>
             <th>Car Part</th>
             <th>Part Type</th>
@@ -23,7 +24,8 @@
         <tbody>
           <% @order_items.each do |order_item| %>
             <tr>
-              <td><%= order_item.order.address %></td>
+              <td><%= order_item.order.shipping_detail.city %></td>
+              <td><%= order_item.order.shipping_detail.address_line_1 %> <%= order_item.order.shipping_detail.address_line_2 %></td>
               <td><%= order_item.car_part.name %></td>
               <td><%= order_item.car_part.part_type.name %></td>
               <td><%= order_item.car_part.car_model.name %></td>

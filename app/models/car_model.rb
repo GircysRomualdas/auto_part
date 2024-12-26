@@ -4,7 +4,7 @@ class CarModel < ApplicationRecord
   has_many :car_parts, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "name", "description", "created_at", "updated_at" ]
+    [ "name", "description", "car_brand_id", "created_at", "updated_at" ]
   end
 
   def self.ransackable_associations(auth_object = nil)

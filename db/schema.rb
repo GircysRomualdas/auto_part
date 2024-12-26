@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_25_002903) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_26_141457) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -136,7 +136,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_002903) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "status", null: false
-    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
@@ -168,6 +167,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_002903) do
     t.index ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
   end
 
+  create_table "shipping_details", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.string "recipient_name"
+    t.string "recipient_email"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "city"
+    t.string "state"
+    t.string "postal_code"
+    t.string "country"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_shipping_details_on_order_id"
+  end
+
   create_table "stocks", force: :cascade do |t|
     t.integer "car_part_id", null: false
     t.integer "quantity", null: false
@@ -189,5 +204,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_002903) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "customers"
   add_foreign_key "sellers", "admins"
+  add_foreign_key "shipping_details", "orders"
   add_foreign_key "stocks", "car_parts"
 end

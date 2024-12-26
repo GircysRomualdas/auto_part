@@ -9,6 +9,7 @@
           <tr>
             <th>Status</th>
             <th>Customer</th>
+            <th>City</th>
             <th>Address</th>
             <th>Car Parts</th>
             <th>Total Price</th>
@@ -23,7 +24,8 @@
                 <%= order.status.humanize %>
               </td>
               <td><%= order.customer.email %></td>
-              <td><%= order.address %></td>
+              <td><%= order.shipping_detail.city %></td>
+              <td><%= order.shipping_detail.address_line_1 %> <%= order.shipping_detail.address_line_1 %></td>
               <td><%= order.order_items.count %></td>
               <td><%= order.total_price %> €</td>
               <td><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>

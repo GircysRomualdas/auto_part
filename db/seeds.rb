@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'ostruct'
 
 CarBrand.destroy_all
 CarModel.destroy_all
@@ -6,6 +7,7 @@ Stock.destroy_all
 CarPart.destroy_all
 PartType.destroy_all
 OrderItem.destroy_all
+ShippingDetail.destroy_all
 Order.destroy_all
 CartItem.destroy_all
 Cart.destroy_all
@@ -428,7 +430,23 @@ customers.each do |customer|
     )
   end
 
-  result = OrderService.create_order_from_cart(customer, "temp test address")
+  customer_details = OpenStruct.new(
+    address: OpenStruct.new(
+      city: "Vilnius",
+      country: "LT",
+      line1: "Gedimino pr.",
+      line2: "123B",
+      postal_code: "LT-01103",
+      state: "Vilnius"
+    ),
+    email: customer.email,
+    name: "John Doe",
+    phone: "+37061234567",
+    tax_exempt: "none",
+    tax_ids: []
+  )
+
+  result = OrderService.create_order_from_cart(customer, customer_details)
 
   if !result[:success]
     puts result[:error]

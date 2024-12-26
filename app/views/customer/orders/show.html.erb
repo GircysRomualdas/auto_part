@@ -1,61 +1,99 @@
-<div class="card shadow-sm">
-  <div class="card-body">
-    <div class="my-2">
-      <div class="d-flex justify-content-between">
-        <h2 class="display-6">My Order</h2>
-        <div class="d-flex">
-          <p class="me-3 fw-bold">Order Status</p>
-          <div class="<%= get_order_status(@order.status) %> fw-bold">
-            <%= @order.status.humanize %>
-          </div>
-        </div>
+<div>
+  <%= button_to "", "#", onclick: "history.back(); return false;", class: "btn btn-outline-secondary mb-2 bi bi-arrow-left-circle" %>
+  <div class="card shadow-sm p-4 mb-4">
+    <h5 class="text-center mb-3">Order Information</h5>
+    <div class="text-muted px-3">
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">Order Status</span>
+        <span class="<%= get_order_status(@order.status) %> fw-bold"><%= @order.status.humanize %></span>
       </div>
-      <%= render "customer/orders/order_items/search", path: customer_order_path(@order), q: @q, part_types: @part_types %>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">Recipient Name</span>
+        <span><%= @order.shipping_detail.recipient_name %></span>
+      </div>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">Recipient Email</span>
+        <span><%= @order.shipping_detail.recipient_email %></span>
+      </div>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">Address</span>
+        <span><%= @order.shipping_detail.address_line_1 %> <%= @order.shipping_detail.address_line_2 %></span>
+      </div>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">City</span>
+        <span><%= @order.shipping_detail.city %></span>
+      </div>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">State</span>
+        <span><%= @order.shipping_detail.state %></span>
+      </div>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">Postal Code</span>
+        <span><%= @order.shipping_detail.postal_code %></span>
+      </div>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">Country</span>
+        <span><%= @order.shipping_detail.country %></span>
+      </div>
+      <div class="d-flex justify-content-between border-bottom my-1">
+        <span class="fw-bold">Phone Number</span>
+        <span><%= @order.shipping_detail.phone_number %></span>
+      </div>
     </div>
-    <div class="mt-2 card">
-      <div class="m-2">
-        <div class="d-flex justify-content-end my-auto fs-5">
-          <div class="card p-2">
-            <div class="mx-1">
-              <span class="fw-bold border-end border-3 pe-5">Total Order Price </span> <span class="ps-5"><%= @order.total_price %> €</span>
+  </div>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="my-2">
+        <div class="d-flex justify-content-between">
+          <h2 class="display-6">Order Items</h2>
+        </div>
+        <%= render "customer/orders/order_items/search", path: customer_order_path(@order), q: @q, part_types: @part_types %>
+      </div>
+      <div class="mt-2 card">
+        <div class="m-2">
+          <div class="d-flex justify-content-end my-auto fs-5">
+            <div class="card p-2">
+              <div class="mx-1">
+                <span class="fw-bold border-end border-3 pe-5">Total Order Price </span> <span class="ps-5"><%= @order.total_price %> €</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <table class="table table-hover border-top">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Car Part</th>
-            <th>Part Price</th>
-            <th>Part Type</th>
-            <th>Model</th>
-            <th>Brand</th>
-            <th>Total Price</th>
-            <th class="col-2">Quantity</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @order_items.each do |order_item| %>
+        <table class="table table-hover border-top">
+          <thead>
             <tr>
-              <td class="p-0 text-center align-middle">
-                <%= order_item.car_part.image.present? ? image_tag(order_item.car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
-              <td><%= link_to order_item.car_part.name, car_part_path(order_item.car_part), class: "text-decoration-none text-reset" %></td>
-              <td><%= order_item.price %> €</td>
-              <td><%= order_item.car_part.part_type.name %></td>
-              <td><%= order_item.car_part.car_model.name %></td>
-              <td><%= order_item.car_part.car_model.car_brand.name %></td>
-              <td><%= order_item.total_price  %> €</td>
-              <td><%= order_item.quantity  %></td>
-              <td class="<%= get_order_item_status(order_item.status) %> fw-bold">
-                <%= order_item.status.humanize  %>
-              </td>
+              <th></th>
+              <th><%= sort_link(@q, :status, "Car Part", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+              <th><%= sort_link(@q, :price, "Part Price", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+              <th><%= sort_link(@q, :car_part_part_type_name, "Part Type", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+              <th><%= sort_link(@q, :car_part_car_model_name, "Model", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+              <th><%= sort_link(@q, :car_part_car_model_car_brandS_name, "Brand", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+              <th>Total Price</th>
+              <th class="col-2"><%= sort_link(@q, :quantity, "Quantity", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+              <th><%= sort_link(@q, :status, "Status", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= render "layouts/shared/pagination", pagy: @pagy %>
+          </thead>
+          <tbody>
+            <% @order_items.each do |order_item| %>
+              <tr>
+                <td class="p-0 text-center align-middle">
+                  <%= order_item.car_part.image.present? ? image_tag(order_item.car_part.image.variant(:small)) : image_tag("https://via.placeholder.com/38") %></td>
+                <td><%= link_to order_item.car_part.name, car_part_path(order_item.car_part), class: "text-decoration-none text-reset" %></td>
+                <td><%= order_item.price %> €</td>
+                <td><%= order_item.car_part.part_type.name %></td>
+                <td><%= order_item.car_part.car_model.name %></td>
+                <td><%= order_item.car_part.car_model.car_brand.name %></td>
+                <td><%= order_item.total_price  %> €</td>
+                <td><%= order_item.quantity  %></td>
+                <td class="<%= get_order_item_status(order_item.status) %> fw-bold">
+                  <%= order_item.status.humanize  %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= render "layouts/shared/pagination", pagy: @pagy %>
+      </div>
     </div>
   </div>
 </div>

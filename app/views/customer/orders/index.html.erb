@@ -7,11 +7,12 @@
       <table class="table table-hover border-top">
         <thead>
           <tr>
-            <th>Status</th>
-            <th>Address</th>
-            <th>Car Parts</th>
+            <th><%= sort_link(@q, :status, "Status", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+            <th><%= sort_link(@q, :shipping_detail_city, "City", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+            <th><%= sort_link(@q, :shipping_detail_address_line_1, "Address", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+            <th><%= sort_link(@q, :order_items_count, "Car Parts", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
             <th>Total Price</th>
-            <th>Created At</th>
+            <th><%= sort_link(@q, :created_at, "Created At", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
             <th></th>
           </tr>
         </thead>
@@ -21,7 +22,8 @@
               <td class="<%= get_order_status(order.status) %> fw-bold">
                 <%= order.status.humanize %>
               </td>
-              <td><%= order.address %></td>
+              <td><%= order.shipping_detail.city %></td>
+              <td><%= order.shipping_detail.address_line_1 %> <%= order.shipping_detail.address_line_2 %></td>
               <td><%= order.order_items.count %></td>
               <td><%= order.total_price %> €</td>
               <td><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>

@@ -10,7 +10,7 @@ class CartItem < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "quantity" ]
+    [ "quantity", "created_at", "cart_id", "car_part_id", "updated_at" ]
   end
 
   def self.ransackable_associations(auth_object = nil)

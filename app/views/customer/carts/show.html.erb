@@ -3,13 +3,9 @@
     <div class="my-2">
       <div class="d-flex justify-content-between">
         <h2 class="display-6">My Cart</h2>
-        <%= form_with(model: [:customer, @order], local: true, method: :post) do |form| %>
-          <div class="d-flex justify-content-between">
-            <%= form.text_field :address, value: @order.address, placeholder: "Order address", class: "form-control"  %>
-            <%= form.submit "Order", class: "btn btn-success ms-2" %>
-          </div>
-        <% end %>
-        <%= link_to "Purchase", new_customer_order_path, class: "btn btn-success" %>
+        <div>
+          <%= link_to "Order", new_customer_order_path, class: "btn btn-success" %>
+        </div>
       </div>
       <%= render "customer/carts/search", path: customer_cart_path(current_customer.cart), q: @q, part_types: @part_types %>
     </div>
@@ -27,13 +23,13 @@
         <thead>
           <tr>
             <th></th>
-            <th><%= sort_link(@q, :car_part_name, "Car Part", class: "text-decoration-none text-black") %></th>
-            <th><%= sort_link(@q, :car_part_price, "Part Price", class: "text-decoration-none text-black") %></th>
-            <th><%= sort_link(@q, :car_part_part_type_name, "Part Type", class: "text-decoration-none text-black") %></th>
-            <th>Model</th>
-            <th>Brand</th>
+            <th><%= sort_link(@q, :car_part_name, "Car Part", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+            <th><%= sort_link(@q, :car_part_price, "Part Price", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+            <th><%= sort_link(@q, :car_part_part_type_name, "Part Type", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+            <th><%= sort_link(@q, :car_part_car_model_name, "Model", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
+            <th><%= sort_link(@q, :car_part_car_model_car_brand_name, "Brand", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
             <th>Total Price</th>
-            <th class="col-2"><%= sort_link(@q, :quantity, "Quantity", class: "text-decoration-none text-black") %></th>
+            <th class="col-2"><%= sort_link(@q, :quantity, "Quantity", class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-black") %></th>
             <th></th>
           </tr>
         </thead>

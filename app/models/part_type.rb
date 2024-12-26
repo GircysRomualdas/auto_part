@@ -8,7 +8,7 @@ class PartType < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "name", "created_at", "updated_at" ]
+    [ "name", "description", "created_at", "updated_at" ]
   end
 
   def self.ransackable_associations(auth_object = nil)
