@@ -7,12 +7,12 @@ class DeviseSeller::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    redirect_to admin_path, alert: "Seller can't sign up"
+    redirect_to seller_path, alert: "Seller can't sign up"
   end
 
   # POST /resource
   def create
-    redirect_to admin_path, alert: "Can't create seller"
+    redirect_to seller_path, alert: "Can't create seller"
   end
 
   # GET /resource/edit
