@@ -14,7 +14,7 @@ export default class extends Controller {
     }
 
     const response = await post(this.urlValue);
-    const { clientSecret } = await response.json();
+    const { clientSecret } = await response.json;
 
     this.checkout = await stripe.initEmbeddedCheckout({
       clientSecret,
