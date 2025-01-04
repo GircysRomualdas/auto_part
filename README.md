@@ -10,13 +10,22 @@ This project aims to develop an efficient and user-friendly auto parts ordering 
 ---
 
 ## Table of Contents
+
 - [About the Project](#about-the-project)
 - [Features](#features)
+  - [Guest Features](#guest-features)
+  - [Customer Features](#customer-features)
+  - [Seller Features](#seller-features)
+  - [Administrator Features](#administrator-features)
 - [Installation](#installation)
+  - [Ruby on Rails Installation Guide](#ruby-on-rails-installation-guide)
+  - [Prerequisites](#prerequisites)
+  - [Steps](#steps)
 
 ---
 
 ## About the Project
+
 The Auto Parts Ordering System provides an intuitive and streamlined interface for ordering car parts, catering to guests, customers, sellers, and administrators with unique roles and functionalities.
 
 ---
@@ -24,11 +33,13 @@ The Auto Parts Ordering System provides an intuitive and streamlined interface f
 ## Features
 
 ### Guest Features
+
 - Browse and search for car parts.
 - Register as a customer and log in.
 - Reset password by providing a registered email address.
 
 ### Customer Features
+
 - Browse and search for car parts.
 - Add car parts to the shopping cart.
 - Modify the cart by changing item quantities or removing items.
@@ -37,12 +48,14 @@ The Auto Parts Ordering System provides an intuitive and streamlined interface f
 - Update profile information.
 
 ### Seller Features
+
 - Create, edit, or delete car parts.
 - View all car parts and orders.
 - Update the order status of items.
 - Update profile information.
 
 ### Administrator Features
+
 - Manage sellers: Create, view, or delete seller accounts.
 - Manage customers: View or delete customer accounts.
 - Manage car parts: View or delete car parts.
@@ -55,10 +68,87 @@ The Auto Parts Ordering System provides an intuitive and streamlined interface f
 ## Installation
 
 ### Ruby on Rails Installation Guide
+
 If you're using **Windows 11**, follow the guide on [GoRails](https://gorails.com/setup/windows/11) for a step-by-step installation process.
 
 ### Prerequisites
+
 Ensure the following are installed on your system:
+
 - **Ruby:** Version 3.3.6
 - **Rails:** Version 8.0.1
 - **PostgreSQL:** As the database for the application.
+
+### Steps
+
+Follow these steps to set up and run the project locally:
+
+1. **Install dependencies:**
+   Clone the project repository from GitHub to your local machine:
+
+   ```bash
+   git clone https://github.com/yourusername/auto_part.git
+   ```
+
+   Navigate into the project directory:
+
+   ```bash
+   cd auto_part
+   ```
+
+   Install the required Ruby gems:
+
+   ```bash
+   bundle install
+   ```
+
+2. **Apply database migrations:**
+   Run the database migrations to set up the database schema:
+
+   ```bash
+   bin/rails db:migrate
+   ```
+
+3. **Set system credentials:**
+   Open the Rails credentials file to add the required environment variables:
+
+   ```bash
+   EDITOR=vim rails credentials:edit
+   ```
+
+   Add the following to the credentials file:
+
+   ```yaml
+   stripe:
+     secret_key: your_stripe_secret_key
+     public_key: your_stripe_public_key
+
+   brevo_smtp:
+     email: your_brevo_smtp_email
+     password: your_brevo_smtp_password
+   ```
+
+   Replace `your_stripe_api_key` and `your_stripe_public_key` with your actual Stripe API credentials.
+   Replace `your_brevo_smtp_email` and `your_brevo_smtp_password` with your actual Brevo credentials.
+
+4. **Precompile assets (optional):**
+   If you are preparing for deployment or running in a production environment, precompile the assets:
+
+   ```bash
+   bin/rails assets:precompile
+   ```
+
+5. **Run the server:**
+   Start the Rails server to launch the application locally:
+
+   ```bash
+   bin/rails server
+   ```
+
+6. **Access the application:**
+   Open a web browser and navigate to:
+   [http://localhost:3000](http://localhost:3000)
+
+   You can now interact with the application.
+
+---
