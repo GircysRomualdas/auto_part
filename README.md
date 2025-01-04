@@ -102,21 +102,7 @@ Follow these steps to set up and run the project locally:
    bundle install
    ```
 
-2. **Apply database migrations:**
-   Run the database migrations to set up the database schema:
-
-   ```bash
-   bin/rails db:migrate
-   ```
-
-3. **Seed the database:**
-   Populate the database with initial data:
-
-   ```bash
-   bin/rails db:seed
-   ```
-
-4. **Set system credentials:**
+2. **Set system credentials:**
    Open the Rails credentials file to add the required environment variables:
 
    ```bash
@@ -137,6 +123,20 @@ Follow these steps to set up and run the project locally:
 
    Replace `your_stripe_api_key` and `your_stripe_public_key` with your actual Stripe API credentials.
    Replace `your_brevo_smtp_email` and `your_brevo_smtp_password` with your actual Brevo credentials.
+
+3. **Seed the database:**
+   Populate the database with initial data:
+
+   ```bash
+   bin/rails db:seed
+   ```
+
+4. **Apply database migrations:**
+   Run the database migrations to set up the database schema:
+
+   ```bash
+   bin/rails db:migrate
+   ```
 
 5. **Precompile assets (optional):**
    If you are preparing for deployment or running in a production environment, precompile the assets:
