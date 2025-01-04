@@ -109,7 +109,14 @@ Follow these steps to set up and run the project locally:
    bin/rails db:migrate
    ```
 
-3. **Set system credentials:**
+3. **Seed the database:**
+   Populate the database with initial data:
+
+   ```bash
+   bin/rails db:seed
+   ```
+
+4. **Set system credentials:**
    Open the Rails credentials file to add the required environment variables:
 
    ```bash
@@ -131,21 +138,21 @@ Follow these steps to set up and run the project locally:
    Replace `your_stripe_api_key` and `your_stripe_public_key` with your actual Stripe API credentials.
    Replace `your_brevo_smtp_email` and `your_brevo_smtp_password` with your actual Brevo credentials.
 
-4. **Precompile assets (optional):**
+5. **Precompile assets (optional):**
    If you are preparing for deployment or running in a production environment, precompile the assets:
 
    ```bash
    bin/rails assets:precompile
    ```
 
-5. **Run the server:**
+6. **Run the server:**
    Start the Rails server to launch the application locally:
 
    ```bash
    bin/rails server
    ```
 
-6. **Access the application:**
+7. **Access the application:**
    Open a web browser and navigate to:
    [http://localhost:3000](http://localhost:3000)
 
