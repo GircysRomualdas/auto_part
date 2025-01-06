@@ -20,7 +20,7 @@ Admin.destroy_all
 # create customer
 customer_data = []
 
-11.times do |i|
+1.times do |i|
   customer_data << { email: "customer#{i+1}@gmail.com", password: "password" }
 end
 
@@ -34,7 +34,7 @@ end
 # create admin
 admin_data = []
 
-2.times do |i|
+1.times do |i|
   admin_data << { email: "admin#{i+1}@gmail.com", password: "password" }
 end
 
@@ -46,7 +46,7 @@ end
 # create seller
 seller_data = []
 
-4.times do |i|
+1.times do |i|
   admin = admins.sample
   seller_data << { email: "seller#{i+1}@gmail.com", password: "password", admin_id: admin.id }
 end
@@ -81,6 +81,8 @@ type_data.each do |data|
     name: data[:name],
     description: data[:description]
   )
+
+  puts "part type: #{data[:url]}"
 
   part_types << part_type
   part_type.image.attach(io: URI.open(data[:url]), filename: "image.jpg")
@@ -262,7 +264,7 @@ car_parts_data = [
   { name: "Electric Power Steering", description: "Electric power steering for better fuel efficiency.", price: 150.00, part_type_name: "Power Steering", active: false, url: "https://www.bosch-mobility.com/media/global/solutions/passenger-cars-and-light-commercial-vehicles/steering-systems/motronic-electronic-control-unit/epsp_product_bg_1176x662.jpg" },
   { name: "High-Speed Wheel Bearing", description: "Precision wheel bearing designed for high-speed vehicles.", price: 60.00, part_type_name: "Wheel Bearing", active: true, url: "https://m.media-amazon.com/images/I/41IG8Ri804L.__AC_SX300_SY300_QL70_ML2_.jpg" },
   { name: "Off-Road Shock Absorber", description: "Shock absorbers designed for rugged off-road terrains.", price: 70.00, part_type_name: "Shock Absorber", active: true, url: "https://www.intraxracing.nl/en/wp-content/uploads/sites/2/2022/04/0_INTRAX-Suspension-Shock-absorber-schokdemper-demper-schroefset-verlaging-coilover-Alfa-Romeo-Sud-4-Weg-BT-ARC-Rally-RR-scaled-1-scaled.jpg" },
-  { name: "Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: false, url: "https://www.magnet-tool.com/media/143/FP-6%20oil%20filter%20magnet_s.jpg" },
+  { name: "Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: false, url: "https://ae01.alicdn.com/kf/H5814a736e3dd4fd888b9e670c2dc35e5y/Automotive-Magnet-Oil-Filter-NdFeB-Neodymium-Magnets-150-degree-C-Filters-Can-Protect-Ur-Engine-20x10x5.jpg" },
   { name: "K&N Air Filter", description: "High-performance air filter for better airflow and power.", price: 50.00, part_type_name: "Air Filter", active: true, url: "https://www.speedfactoryracing.net/cdn/shop/products/4d5e0e5bd30eff4e58588a5251d9665f_1024x1024.jpg?v=1694190883" },
   { name: "Twin-Turbo V8 Engine", description: "Twin-turbo V8 engine for maximum performance.", price: 1000.00, part_type_name: "Engine", active: true, url: "https://s3.amazonaws.com/wp-images.bankspower.com/performance-upgrades/wp-content/uploads/2004/09/TwinTurbo-engine.jpg" },
   { name: "Manual Transmission", description: "Traditional manual transmission for driving enthusiasts.", price: 600.00, part_type_name: "Transmission", active: true, url: "https://www.speednik.com/wp-content/blogs.dir/1/files/2012/10/zf-seven-speed-transmission.jpg" },
@@ -302,7 +304,7 @@ car_parts_data = [
   { name: "NA Electric Power Steering", description: "Electric power steering for better fuel efficiency.", price: 150.00, part_type_name: "Power Steering", active: false, url: "https://www.bosch-mobility.com/media/global/solutions/passenger-cars-and-light-commercial-vehicles/steering-systems/motronic-electronic-control-unit/epsp_product_bg_1176x662.jpg" },
   { name: "NA High-Speed Wheel Bearing", description: "Precision wheel bearing designed for high-speed vehicles.", price: 50.00, part_type_name: "Wheel Bearing", active: true, url: "https://m.media-amazon.com/images/I/41IG8Ri804L.__AC_SX300_SY300_QL70_ML2_.jpg" },
   { name: "NA Off-Road Shock Absorber", description: "Shock absorbers designed for rugged off-road terrains.", price: 50.00, part_type_name: "Shock Absorber", active: true, url: "https://www.intraxracing.nl/en/wp-content/uploads/sites/2/2022/04/0_INTRAX-Suspension-Shock-absorber-schokdemper-demper-schroefset-verlaging-coilover-Alfa-Romeo-Sud-4-Weg-BT-ARC-Rally-RR-scaled-1-scaled.jpg" },
-  { name: "NA Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: false, url: "https://www.magnet-tool.com/media/143/FP-6%20oil%20filter%20magnet_s.jpg" },
+  { name: "NA Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: false, url: "https://ae01.alicdn.com/kf/H5814a736e3dd4fd888b9e670c2dc35e5y/Automotive-Magnet-Oil-Filter-NdFeB-Neodymium-Magnets-150-degree-C-Filters-Can-Protect-Ur-Engine-20x10x5.jpg" },
   { name: "NA K&N Air Filter", description: "High-performance air filter for better airflow and power.", price: 60.00, part_type_name: "Air Filter", active: true, url: "https://www.speedfactoryracing.net/cdn/shop/products/4d5e0e5bd30eff4e58588a5251d9665f_1024x1024.jpg?v=1694190883" },
   { name: "NA Twin-Turbo V8 Engine", description: "Twin-turbo V8 engine for maximum performance.", price: 1600.00, part_type_name: "Engine", active: false, url: "https://s3.amazonaws.com/wp-images.bankspower.com/performance-upgrades/wp-content/uploads/2004/09/TwinTurbo-engine.jpg" },
   { name: "NA Manual Transmission", description: "Traditional manual transmission for driving enthusiasts.", price: 500.00, part_type_name: "Transmission", active: true, url: "https://www.speednik.com/wp-content/blogs.dir/1/files/2012/10/zf-seven-speed-transmission.jpg" },
@@ -342,7 +344,7 @@ car_parts_data = [
   { name: "DS Electric Power Steering", description: "Electric power steering for better fuel efficiency.", price: 150.00, part_type_name: "Power Steering", active: true, url: "https://www.bosch-mobility.com/media/global/solutions/passenger-cars-and-light-commercial-vehicles/steering-systems/motronic-electronic-control-unit/epsp_product_bg_1176x662.jpg" },
   { name: "DS High-Speed Wheel Bearing", description: "Precision wheel bearing designed for high-speed vehicles.", price: 60.00, part_type_name: "Wheel Bearing", active: false, url: "https://m.media-amazon.com/images/I/41IG8Ri804L.__AC_SX300_SY300_QL70_ML2_.jpg" },
   { name: "DS Off-Road Shock Absorber", description: "Shock absorbers designed for rugged off-road terrains.", price: 70.00, part_type_name: "Shock Absorber", active: true, url: "https://www.intraxracing.nl/en/wp-content/uploads/sites/2/2022/04/0_INTRAX-Suspension-Shock-absorber-schokdemper-demper-schroefset-verlaging-coilover-Alfa-Romeo-Sud-4-Weg-BT-ARC-Rally-RR-scaled-1-scaled.jpg" },
-  { name: "DS Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: true, url: "https://www.magnet-tool.com/media/143/FP-6%20oil%20filter%20magnet_s.jpg" },
+  { name: "DS Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: true, url: "https://ae01.alicdn.com/kf/H5814a736e3dd4fd888b9e670c2dc35e5y/Automotive-Magnet-Oil-Filter-NdFeB-Neodymium-Magnets-150-degree-C-Filters-Can-Protect-Ur-Engine-20x10x5.jpg" },
   { name: "DS K&N Air Filter", description: "High-performance air filter for better airflow and power.", price: 60.00, part_type_name: "Air Filter", active: false, url: "https://www.speedfactoryracing.net/cdn/shop/products/4d5e0e5bd30eff4e58588a5251d9665f_1024x1024.jpg?v=1694190883" },
   { name: "DS Twin-Turbo V8 Engine", description: "Twin-turbo V8 engine for maximum performance.", price: 1600.00, part_type_name: "Engine", active: true, url: "https://s3.amazonaws.com/wp-images.bankspower.com/performance-upgrades/wp-content/uploads/2004/09/TwinTurbo-engine.jpg" },
   { name: "DS Manual Transmission", description: "Traditional manual transmission for driving enthusiasts.", price: 400.00, part_type_name: "Transmission", active: true, url: "https://www.speednik.com/wp-content/blogs.dir/1/files/2012/10/zf-seven-speed-transmission.jpg" },
@@ -382,7 +384,7 @@ car_parts_data = [
   { name: "V2 Electric Power Steering", description: "Electric power steering for better fuel efficiency.", price: 150.00, part_type_name: "Power Steering", active: true, url: "https://www.bosch-mobility.com/media/global/solutions/passenger-cars-and-light-commercial-vehicles/steering-systems/motronic-electronic-control-unit/epsp_product_bg_1176x662.jpg" },
   { name: "V2 High-Speed Wheel Bearing", description: "Precision wheel bearing designed for high-speed vehicles.", price: 70.00, part_type_name: "Wheel Bearing", active: true, url: "https://m.media-amazon.com/images/I/41IG8Ri804L.__AC_SX300_SY300_QL70_ML2_.jpg" },
   { name: "V2 Off-Road Shock Absorber", description: "Shock absorbers designed for rugged off-road terrains.", price: 90.00, part_type_name: "Shock Absorber", active: true, url: "https://www.intraxracing.nl/en/wp-content/uploads/sites/2/2022/04/0_INTRAX-Suspension-Shock-absorber-schokdemper-demper-schroefset-verlaging-coilover-Alfa-Romeo-Sud-4-Weg-BT-ARC-Rally-RR-scaled-1-scaled.jpg" },
-  { name: "V2 Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: true, url: "https://www.magnet-tool.com/media/143/FP-6%20oil%20filter%20magnet_s.jpg" },
+  { name: "V2 Magnetic Oil Filter", description: "Oil filter with a magnetic core for improved filtration.", price: 25.00, part_type_name: "Oil Filter", active: true, url: "https://ae01.alicdn.com/kf/H5814a736e3dd4fd888b9e670c2dc35e5y/Automotive-Magnet-Oil-Filter-NdFeB-Neodymium-Magnets-150-degree-C-Filters-Can-Protect-Ur-Engine-20x10x5.jpg" },
   { name: "V2 K&N Air Filter", description: "High-performance air filter for better airflow and power.", price: 50.00, part_type_name: "Air Filter", active: false, url: "https://www.speedfactoryracing.net/cdn/shop/products/4d5e0e5bd30eff4e58588a5251d9665f_1024x1024.jpg?v=1694190883" },
   { name: "V2 Twin-Turbo V8 Engine", description: "Twin-turbo V8 engine for maximum performance.", price: 1300.00, part_type_name: "Engine", active: false, url: "https://s3.amazonaws.com/wp-images.bankspower.com/performance-upgrades/wp-content/uploads/2004/09/TwinTurbo-engine.jpg" },
   { name: "V2 Manual Transmission", description: "Traditional manual transmission for driving enthusiasts.", price: 400.00, part_type_name: "Transmission", active: true, url: "https://www.speednik.com/wp-content/blogs.dir/1/files/2012/10/zf-seven-speed-transmission.jpg" },
@@ -407,6 +409,8 @@ car_parts_data.each do |data|
     active: data[:active],
     car_model: car_models.sample
   )
+
+  puts "car parts: #{data[:url]}"
 
   car_parts << car_part
   car_part.image.attach(io: URI.open(data[:url]), filename: "image.jpg")
