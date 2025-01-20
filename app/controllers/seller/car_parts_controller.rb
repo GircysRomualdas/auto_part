@@ -29,6 +29,8 @@ class Seller::CarPartsController < SellerController
     if @car_part.save
       redirect_to seller_car_part_path(@car_part), notice: "Car part successfully created."
     else
+      @car_brands = CarBrand.all
+      @car_models = []
       render :new, status: :unprocessable_entity, alert: "Error when creating car part."
     end
   end
@@ -37,6 +39,8 @@ class Seller::CarPartsController < SellerController
     if @car_part.update(car_part_params)
       redirect_to seller_car_part_path(@car_part), notice: "Car part successfully updated."
     else
+      @car_brands = CarBrand.all
+      @car_models = CarModel.where(car_brand_id: @car_part.car_model.car_brand.id)
       render :edit, status: :unprocessable_entity, alert: "Error when updating car part."
     end
   end

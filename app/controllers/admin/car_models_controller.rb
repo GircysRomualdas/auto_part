@@ -24,6 +24,7 @@ class Admin::CarModelsController < AdminController
     if @car_model.save
       redirect_to admin_car_model_path(@car_model), notice: "Car model successfully created."
     else
+      @car_brands = CarBrand.all
       render :new, status: :unprocessable_entity, alert: "Error when craeting car model"
     end
   end
@@ -32,6 +33,7 @@ class Admin::CarModelsController < AdminController
     if @car_model.update(car_model_params)
       redirect_to admin_car_model_path(@car_model), notice: "Car model successfully updated."
     else
+      @car_brands = CarBrand.all
       render :edit, status: :unprocessable_entity, alert: "Error when updating car model"
     end
   end
