@@ -5,6 +5,9 @@ class CarPartsController < ApplicationController
     @pagy, @car_parts = pagy(@q.result(distinct: true).includes(:part_type))
 
     @part_types = PartType.all
+
+    @car_brands = CarBrand.all
+    @car_models = []
   end
   def show
     @car_part = CarPart.find(params[:id])

@@ -2,12 +2,28 @@
   <div class="card p-3 mb-2">
     <div class="row">
       <div class="col my-2">
-        <%= form.label :price_gteq, "Minimum Price", class: "form-label fw-bold"  %>
-        <%= form.number_field :price_gteq, class: "form-control"  %>
+        <%= form.label :price_gteq, "Minimum Price", class: "form-label fw-bold" %>
+        <%= form.number_field :price_gteq, class: "form-control" %>
       </div>
       <div class="col my-2">
-        <%= form.label :price_lteq, "Maximum Price", class: "form-label fw-bold"  %>
-        <%= form.number_field :price_lteq, class: "form-control"  %>
+        <%= form.label :price_lteq, "Maximum Price", class: "form-label fw-bold" %>
+        <%= form.number_field :price_lteq, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col my-2">
+        <%= form.label :car_brand_id_eq, "Car Brand", class: "form-label fw-bold" %>
+        <%= form.select :car_model_car_brand_id_eq,
+          @car_brands.map { |brand| [brand.name, brand.id] },
+          { prompt: "Select Car Brand", value: nil },
+          { class: "form-select", id: "car-brand-select" } %>
+      </div>
+      <div class="col my-2">
+        <%= form.label :car_model_id_eq, "Car Model", class: "form-label fw-bold" %>
+        <%= form.select :car_model_id_eq,
+            [],
+            { prompt: "Select Car Model" },
+            { class: "form-select", id: "car-model-select" } %>
       </div>
     </div>
   </div>
@@ -16,3 +32,34 @@
     <%= form.submit "Filter", class: "btn btn-primary" %>
   </div>
 <% end %>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carBrandSelect = document.getElementById("car-brand-select");
+    const carModelSelect = document.getElementById("car-model-select");
+
+    carBrandSelect.addEventListener("change", function () {
+      const brandId = this.value;
+      carModelSelect.innerHTML = "<option value=''>Select Car Model</option>";
+
+      if (brandId) {
+        const csrfToken = document.querySelector("[name='csrf-token']").content;
+
+        fetch(`/seller/car_models/by_brand?car_brand_id=${brandId}`, {
+          headers: {
+            "X-CSRF-Token": csrfToken,
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+            data.forEach(model => {
+              const option = document.createElement("option");
+              option.value = model.id;
+              option.textContent = model.name;
+              carModelSelect.appendChild(option);
+            });
+          })
+          .catch(error => console.error("Error fetching car models:", error));
+      }
+    });
+  });
+</script>

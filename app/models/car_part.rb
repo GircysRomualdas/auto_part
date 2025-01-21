@@ -4,6 +4,7 @@ class CarPart < ApplicationRecord
   belongs_to :car_model
 
   has_one :stock, dependent: :destroy
+  has_one :car_brand, through: :car_model
 
   has_many :order_items, dependent: :destroy
   has_many :cart_items, dependent: :destroy
@@ -15,6 +16,8 @@ class CarPart < ApplicationRecord
     attachable.variant :medium, resize_to_limit: [ 200, 200 ]
     attachable.variant :large, resize_to_limit: [ 500, 500 ]
   end
+
+  ransack_alias :car_brand_id, :car_model_car_brand_id
 
   def self.ransackable_attributes(auth_object = nil)
     [ "name", "description", "price", "active", "part_type_id", "seller_id", "car_model_id", "created_at", "updated_at" ]

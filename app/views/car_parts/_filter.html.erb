@@ -27,6 +27,24 @@
         </div>
       </div>
     </div>
+    <div class="col">
+      <div class="row">
+        <div class="col my-2">
+          <%= form.label :car_brand_id_eq, "Car Brand", class: "form-label fw-bold" %>
+          <%= form.select :car_model_car_brand_id_eq,
+          @car_brands.map { |brand| [brand.name, brand.id] },
+          { prompt: "Select Car Brand", value: nil },
+          { class: "form-select", id: "car-brand-select" } %>
+        </div>
+        <div class="col my-2">
+          <%= form.label :car_model_id_eq, "Car Model", class: "form-label fw-bold" %>
+          <%= form.select :car_model_id_eq,
+            [],
+            { prompt: "Select Car Model" },
+            { class: "form-select", id: "car-model-select" } %>
+        </div>
+      </div>
+    </div>
     <div class="col my-2">
       <div class="d-flex justify-content-end">
         <%= link_to "Clear Filter", car_parts_path, class: "btn btn-outline-secondary me-2" %>
@@ -35,3 +53,34 @@
     </div>
   </div>
 <% end %>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carBrandSelect = document.getElementById("car-brand-select");
+    const carModelSelect = document.getElementById("car-model-select");
+
+    carBrandSelect.addEventListener("change", function () {
+      const brandId = this.value;
+      carModelSelect.innerHTML = "<option value=''>Select Car Model</option>";
+
+      if (brandId) {
+        const csrfToken = document.querySelector("[name='csrf-token']").content;
+
+        fetch(`/seller/car_models/by_brand?car_brand_id=${brandId}`, {
+          headers: {
+            "X-CSRF-Token": csrfToken,
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+            data.forEach(model => {
+              const option = document.createElement("option");
+              option.value = model.id;
+              option.textContent = model.name;
+              carModelSelect.appendChild(option);
+            });
+          })
+          .catch(error => console.error("Error fetching car models:", error));
+      }
+    });
+  });
+</script>
