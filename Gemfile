@@ -70,4 +70,4 @@ gem "pagy", "~> 9.3"
 
 gem "ransack", "~> 4.2"
 
-gem "stripe", "~> 13.3"
+gem "stripe", "~> 13.4"
